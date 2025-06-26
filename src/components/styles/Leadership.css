@@ -1,0 +1,737 @@
+/* Leadership Section */
+.leadership-section {
+  background: rgba(10, 10, 10, 0.8);
+}
+
+.leadership-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.subsection-title {
+  color: #8B5CF6;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.subsection-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 3px;
+  background: #8B5CF6;
+  border-radius: 2px;
+}
+
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 2rem;
+  margin-bottom: 5rem;
+}
+
+.leadership-card {
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.role-icon {
+  font-size: 2.5rem;
+  min-width: 60px;
+  text-align: center;
+}
+
+.role-info {
+  flex: 1;
+}
+
+.role-title {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.organization {
+  color: #8B5CF6;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.role-period {
+  display: block;
+  color: #9CA3AF;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.role-type {
+  display: inline-block;
+  background: rgba(139, 92, 246, 0.2);
+  color: #C084FC;
+  padding: 0.2rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.role-description {
+  color: #D1D5DB;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.responsibilities, .achievements {
+  margin-bottom: 1.5rem;
+}
+
+.responsibilities h6, .achievements h6 {
+  color: #8B5CF6;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.responsibilities ul, .achievements ul {
+  list-style: none;
+  margin-left: 1rem;
+}
+
+.responsibilities li, .achievements li {
+  color: #D1D5DB;
+  padding: 0.4rem 0;
+  position: relative;
+  padding-left: 1.2rem;
+  line-height: 1.5;
+}
+
+.responsibilities li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #8B5CF6;
+  font-weight: bold;
+}
+
+.achievements li::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  color: #F59E0B;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.activity-card {
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.activity-header {
+  margin-bottom: 1rem;
+}
+
+.activity-name {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.activity-role {
+  display: block;
+  color: #8B5CF6;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.activity-period {
+  color: #9CA3AF;
+  font-size: 0.9rem;
+}
+
+.activity-description {
+  color: #D1D5DB;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.activity-achievements {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.achievement-badge {
+  background: rgba(139, 92, 246, 0.2);
+  color: #C084FC;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.leadership-impact {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.leadership-impact h3 {
+  color: #8B5CF6;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.impact-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.impact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(20, 20, 20, 0.6);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.impact-icon {
+  font-size: 2rem;
+  color: #8B5CF6;
+}
+
+.impact-content {
+  text-align: left;
+}
+
+.impact-number {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
+}
+
+.impact-label {
+  color: #9CA3AF;
+  font-size: 0.9rem;
+}
+
+.leadership-philosophy {
+  margin-top: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.philosophy-content h3 {
+  color: #8B5CF6;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.philosophy-content p {
+  color: #D1D5DB;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.philosophy-content blockquote {
+  background: rgba(139, 92, 246, 0.1);
+  border-left: 4px solid #8B5CF6;
+  padding: 1rem 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  color: #C084FC;
+  border-radius: 0 10px 10px 0;
+}
+
+/* Achievements Section */
+.achievements-section {
+  background: rgba(15, 15, 15, 0.8);
+  position: relative;
+  overflow: hidden;
+}
+
+.achievements-stats {
+  margin-bottom: 4rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat-card {
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2);
+}
+
+.stat-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.stat-label {
+  color: #9CA3AF;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.achievement-card {
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.achievement-image {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.achievement-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.achievement-card:hover .achievement-image img {
+  transform: scale(1.1);
+}
+
+.achievement-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.achievement-card:hover .achievement-overlay {
+  opacity: 1;
+}
+
+.achievement-icon {
+  font-size: 3rem;
+}
+
+.achievement-content {
+  padding: 2rem;
+}
+
+.achievement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.category-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.category-badge.competition {
+  background: rgba(255, 215, 0, 0.2);
+  color: #FFD700;
+}
+
+.category-badge.recognition {
+  background: rgba(66, 133, 244, 0.2);
+  color: #4285F4;
+}
+
+.category-badge.innovation {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8B5CF6;
+}
+
+.category-badge.academic {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10B981;
+}
+
+.category-badge.community {
+  background: rgba(239, 68, 68, 0.2);
+  color: #EF4444;
+}
+
+.category-badge.development {
+  background: rgba(99, 102, 241, 0.2);
+  color: #6366F1;
+}
+
+.achievement-date {
+  color: #9CA3AF;
+  font-size: 0.9rem;
+}
+
+.achievement-title {
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.achievement-event {
+  color: #8B5CF6;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.achievement-description {
+  color: #D1D5DB;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.achievement-prize {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #F59E0B;
+  font-weight: 600;
+}
+
+.prize-icon {
+  font-size: 1.2rem;
+}
+
+.card-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.achievement-card:hover .card-particles {
+  opacity: 1;
+}
+
+.card-particles .particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #8B5CF6;
+  border-radius: 50%;
+  animation: cardFloat 3s infinite ease-in-out;
+}
+
+.card-particles .particle:nth-child(1) {
+  top: 20%;
+  left: 20%;
+  animation-delay: 0s;
+}
+
+.card-particles .particle:nth-child(2) {
+  top: 80%;
+  right: 20%;
+  animation-delay: 1s;
+}
+
+.card-particles .particle:nth-child(3) {
+  top: 50%;
+  left: 80%;
+  animation-delay: 2s;
+}
+
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); opacity: 0.8; }
+  50% { transform: translateY(-20px); opacity: 1; }
+}
+
+.recognition-timeline {
+  margin-top: 4rem;
+}
+
+.recognition-timeline h3 {
+  color: #8B5CF6;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #8B5CF6, #A855F7, #C084FC);
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+  width: 45%;
+}
+
+.timeline-item.left {
+  left: 0;
+  text-align: right;
+}
+
+.timeline-item.right {
+  left: 55%;
+  text-align: left;
+}
+
+.timeline-marker {
+  position: absolute;
+  top: 1rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.timeline-item.left .timeline-marker {
+  right: -20px;
+}
+
+.timeline-item.right .timeline-marker {
+  left: -20px;
+}
+
+.marker-icon {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+.timeline-content {
+  background: rgba(20, 20, 20, 0.6);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 15px;
+  padding: 1.5rem;
+}
+
+.timeline-content h4 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+  color: #8B5CF6;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-date {
+  color: #9CA3AF;
+  font-size: 0.9rem;
+}
+
+.future-goals {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.goals-content h3 {
+  color: #8B5CF6;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.goals-content p {
+  color: #D1D5DB;
+  line-height: 1.7;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.goals-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.goal-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(139, 92, 246, 0.1);
+  padding: 1rem 1.5rem;
+  border-radius: 25px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #C084FC;
+  font-weight: 500;
+}
+
+.goal-icon {
+  font-size: 1.2rem;
+  color: #8B5CF6;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .roles-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .achievements-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .leadership-card {
+    padding: 1.5rem;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .role-icon {
+    font-size: 2rem;
+  }
+  
+  .stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  
+  .achievements-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .timeline-line {
+    left: 30px;
+  }
+  
+  .timeline-item {
+    width: 100%;
+    left: 0 !important;
+    text-align: left;
+    padding-left: 80px;
+  }
+  
+  .timeline-marker {
+    left: 10px !important;
+    right: auto !important;
+  }
+  
+  .goals-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .goal-item {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+}
