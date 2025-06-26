@@ -1,0 +1,1133 @@
+/* Internships Section */
+.internships-section {
+  background: rgba(15, 15, 15, 0.8);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.timeline-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  position: relative;
+  padding: 0 2rem;
+}
+
+.timeline {
+  position: relative;
+  padding: 2rem 0;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: -5rem;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #8B5CF6, #A855F7, #C084FC);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: -3rem;
+}
+
+.timeline-item.left,
+.timeline-item.right {
+  left: 0;
+  text-align: left;
+}
+
+.timeline-marker {
+  position: absolute;
+  top: 1rem;
+  left: -8rem;
+  width: 40px;
+  height: 40px;
+  background: #8B5CF6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+  z-index: 2;
+}
+
+.timeline-content {
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 60vw;
+  max-width: 60vw;
+  text-align: left;
+  position: relative;
+  left: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Specific styling for education timeline */
+.education-timeline .timeline-content {
+  padding: 1.2rem;
+  max-width: 650px;
+}
+
+.internship-header {
+  margin-bottom: 1rem;
+}
+
+.company-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-align: left;
+}
+
+.company-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.company-name {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  text-align: left;
+}
+
+.role-title {
+  color: #8B5CF6;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.internship-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #9CA3AF;
+  font-size: 0.9rem;
+}
+
+.meta-icon {
+  color: #8B5CF6;
+}
+
+.internship-description {
+  color: #D1D5DB;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.responsibilities, .achievements, .highlights {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.responsibilities h5, .achievements h5, .highlights h5 {
+  color: #8B5CF6;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-icon {
+  font-size: 0.9rem;
+}
+
+.responsibilities ul, .achievements ul, .highlights ul {
+  list-style: none;
+  margin-left: 1rem;
+}
+
+.responsibilities li, .achievements li, .highlights li {
+  color: #D1D5DB;
+  padding: 0.3rem 0;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.responsibilities li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: #8B5CF6;
+}
+
+.achievements li::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  color: #F59E0B;
+}
+
+.highlights li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #10B981;
+}
+
+.technologies h5 {
+  color: #8B5CF6;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-tag {
+  background: rgba(139, 92, 246, 0.2);
+  color: #C084FC;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.experience-summary {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.summary-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(20, 20, 20, 0.6);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.summary-icon {
+  font-size: 2rem;
+  color: #8B5CF6;
+}
+
+.summary-content h4 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.summary-content p {
+  color: #9CA3AF;
+  font-size: 0.9rem;
+}
+
+/* Certifications Section */
+.certifications-section {
+  background: rgba(10, 10, 10, 0.8);
+}
+
+.certification-filters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+  flex-wrap: wrap;
+}
+
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.certification-card {
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.4s ease;
+  cursor: pointer;
+}
+
+.cert-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.cert-badge {
+  width: 60px;
+  height: 60px;
+}
+
+.cert-badge img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cert-icon {
+  font-size: 2rem;
+}
+
+.cert-title {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.cert-issuer {
+  color: #8B5CF6;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.cert-description {
+  color: #D1D5DB;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.cert-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cert-skills h4 {
+  color: #8B5CF6;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.skill-tag {
+  background: rgba(139, 92, 246, 0.2);
+  color: #C084FC;
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.cert-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.credential-id {
+  color: #6B7280;
+  font-size: 0.8rem;
+  font-family: monospace;
+}
+
+.verify-btn {
+  background: #8B5CF6;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  border: none;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.verify-btn:hover {
+  background: #A855F7;
+  transform: translateY(-2px);
+}
+
+.link-btn {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8B5CF6;
+  padding: 0.4rem 0.8rem;
+  border-radius: 15px;
+  text-decoration: none;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  font-weight: 500;
+}
+
+.link-btn:hover {
+  background: rgba(139, 92, 246, 0.3);
+  border-color: #8B5CF6;
+  transform: translateY(-1px);
+}
+
+.certification-summary {
+  text-align: center;
+}
+
+.summary-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(20, 20, 20, 0.6);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  color: #8B5CF6;
+}
+
+.stat-content {
+  text-align: left;
+}
+
+.stat-number {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
+}
+
+.stat-label {
+  color: #9CA3AF;
+  font-size: 0.9rem;
+}
+
+.learning-commitment {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.learning-commitment h3 {
+  color: #8B5CF6;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.learning-commitment p {
+  color: #D1D5DB;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Certificate Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+}
+
+.modal-content {
+  background: rgba(20, 20, 20, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 20px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #EF4444;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.modal-close:hover {
+  background: rgba(239, 68, 68, 0.3);
+  transform: scale(1.1);
+}
+
+.modal-header {
+  padding: 2rem 2rem 1rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.modal-header h3 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.modal-header p {
+  color: #8B5CF6;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.modal-image {
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.modal-image img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.image-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  min-height: 300px;
+  color: #6B7280;
+}
+
+.image-fallback svg {
+  font-size: 4rem;
+  color: #8B5CF6;
+}
+
+.modal-footer {
+  padding: 1rem 2rem 2rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(139, 92, 246, 0.2);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.modal-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modal-meta span {
+  color: #D1D5DB;
+  font-size: 0.9rem;
+}
+
+.modal-verify-btn {
+  background: #8B5CF6;
+  color: #ffffff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  text-decoration: none;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.modal-verify-btn:hover {
+  background: #A855F7;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.3);
+}
+
+/* Smooth scrolling for the entire document */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improved education card hover effects */
+.education-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(139, 92, 246, 0.15);
+}
+
+/* Better responsive breakpoints for education cards */
+@media (max-width: 1200px) {
+  .education-item {
+    width: 50%;
+  }
+}
+
+@media (max-width: 992px) {
+  .education-item {
+    width: 50%;
+  }
+}
+
+/* Certificate Modal Specific Styles */
+.certificate-modal {
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.certificate-modal .modal-image {
+  padding: 0;
+  position: relative;
+}
+
+.certificate-modal .modal-image img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+.certificate-modal .modal-close {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1002;
+  font-size: 1.2rem;
+}
+
+.certificate-modal .modal-close:hover {
+  background: rgba(239, 68, 68, 0.9);
+  border-color: #EF4444;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+  
+  .modal-header {
+    padding: 1.5rem 1.5rem 1rem 1.5rem;
+  }
+  
+  .modal-header h3 {
+    font-size: 1.2rem;
+  }
+  
+  .modal-image {
+    padding: 1.5rem;
+  }
+  
+  .modal-footer {
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .modal-verify-btn {
+    justify-content: center;
+  }
+}
+
+/* Education Section */
+.education-section {
+  background: rgba(15, 15, 15, 0.8);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+.education-timeline {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  position: relative;
+  padding: 2rem;
+  scroll-behavior: smooth;
+}
+
+.education-timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, #8B5CF6, #A855F7, #C084FC);
+  transform: translateX(-50%);
+}
+
+.education-item {
+  position: relative;
+  margin-bottom: 1.5rem;
+  width: 50%;
+  max-width: none;
+  padding: 0 2rem;
+  scroll-margin-top: 2rem;
+}
+
+.education-item:nth-child(odd) {
+  left: 0;
+  padding-right: 3rem;
+  text-align: right;
+}
+
+.education-item:nth-child(even) {
+  left: 50%;
+  padding-left: 3rem;
+  text-align: left;
+}
+
+.education-item .timeline-marker {
+  display: none;
+}
+
+.education-item:nth-child(odd) .timeline-marker {
+  display: none;
+}
+
+.education-item:nth-child(even) .timeline-marker {
+  display: none;
+}
+
+.education-card {
+  background: rgba(20, 20, 20, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 20px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  text-align: inherit;
+}
+
+.education-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.education-item:nth-child(odd) .education-header {
+  text-align: right;
+}
+
+.education-item:nth-child(even) .education-header {
+  text-align: left;
+}
+
+.institution-info {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.education-item:nth-child(odd) .institution-info {
+  text-align: right;
+}
+
+.education-item:nth-child(even) .institution-info {
+  text-align: left;
+}
+
+.institution-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.degree-title {
+  color: #ffffff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.institution-name {
+  color: #8B5CF6;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.status-badge {
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.status-badge.current {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10B981;
+}
+
+.status-badge.completed {
+  background: rgba(139, 92, 246, 0.2);
+  color: #8B5CF6;
+}
+
+.education-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: flex-start;
+}
+
+.education-description {
+  color: #D1D5DB;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.detail-section {
+  margin-bottom: 0.8rem;
+  text-align: left;
+}
+
+.detail-section h5 {
+  color: #8B5CF6;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.courses-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+  justify-content: flex-start;
+}
+
+.course-tag {
+  background: rgba(139, 92, 246, 0.2);
+  color: #C084FC;
+  padding: 0.2rem 0.6rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.achievements-list, .activities-list {
+  list-style: none;
+  margin-left: 0.8rem;
+  text-align: left;
+}
+
+.achievements-list li, .activities-list li {
+  color: #D1D5DB;
+  padding: 0.15rem 0;
+  position: relative;
+  padding-left: 1rem;
+  text-align: left;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.achievements-list li::before {
+  content: '🏆';
+  position: absolute;
+  left: 0;
+}
+
+.activities-list li::before {
+  content: '🎯';
+  position: absolute;
+  left: 0;
+}
+
+.academic-highlights {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.academic-highlights h3 {
+  color: #8B5CF6;
+  font-size: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(20, 20, 20, 0.6);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.highlight-icon {
+  font-size: 2rem;
+  color: #8B5CF6;
+}
+
+.highlight-content h4 {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.highlight-content p {
+  color: #9CA3AF;
+  font-size: 0.9rem;
+}
+
+.study-philosophy {
+  margin-top: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.philosophy-content h3 {
+  color: #8B5CF6;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.philosophy-content p {
+  color: #D1D5DB;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+/* Responsive Design for Timeline */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 30px;
+  }
+  
+  .timeline-item {
+    width: 100%;
+    left: 0 !important;
+    text-align: left;
+    padding-left: 80px;
+  }
+  
+  .timeline-marker {
+    left: 10px !important;
+    right: auto !important;
+  }
+  
+  .education-timeline::before {
+    left: 2rem;
+    transform: none;
+  }
+  
+  .education-item {
+    width: 100%;
+    left: 0 !important;
+    text-align: left !important;
+    padding-left: 4rem !important;
+    padding-right: 1rem !important;
+    scroll-margin-top: 2rem;
+  }
+  
+  .education-item .timeline-marker {
+    left: 0.5rem !important;
+    right: auto !important;
+    width: 35px;
+    height: 35px;
+  }
+  
+  .education-card {
+    width: 90vw;
+    max-width: 90vw;
+    padding: 1rem;
+  }
+  
+  .education-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+  
+  .institution-info {
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+}
+
+/* Certificate Modal Specific Styles */
+.certificate-modal {
+  background: transparent !important;
+  border: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  max-width: 95vw;
+  max-height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.certificate-modal .modal-image {
+  padding: 0;
+  position: relative;
+}
+
+.certificate-modal .modal-image img {
+  max-width: 90vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+.certificate-modal .modal-close {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  color: #ffffff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1002;
+  font-size: 1.2rem;
+}
+
+.certificate-modal .modal-close:hover {
+  background: rgba(239, 68, 68, 0.9);
+  border-color: #EF4444;
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .certificate-modal .modal-close {
+    top: 1rem;
+    right: 1rem;
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
+  }
+  
+  .certificate-modal .modal-image img {
+    max-width: 95vw;
+    max-height: 85vh;
+  }
+}
