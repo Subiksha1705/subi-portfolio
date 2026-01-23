@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
-import '../Hero.css';
+import '../../Hero.css';
 
 const Hero = () => {
   const [typingText, setTypingText] = useState('');

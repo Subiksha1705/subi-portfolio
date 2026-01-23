@@ -25,6 +25,17 @@ export const certificationBadges = {
   fullstack: 'https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=100&h=100&fit=crop'
 };
 
+export const certificationImages = {
+  'DEEP LEARNING.png': '/assets/Certificates/DEEP LEARNING.png',
+  'DEVOPS.png': '/assets/Certificates/DEVOPS.png',
+  'ISB AGILE.png': '/assets/Certificates/ISB AGILE.png',
+  'ISB BOOTSTRAP.png': '/assets/Certificates/ISB BOOTSTRAP.png',
+  'ISB BUSSINESS.png': '/assets/Certificates/ISB BUSSINESS.png',
+  'LLM.png': '/assets/Certificates/LLM.png',
+  'ORACLE APEX CLOUD.png': '/assets/Certificates/ORACLE APEX CLOUD.png',
+  'WEB DEV IBM.png': '/assets/Certificates/WEB DEV IBM.png'
+};
+
 export const achievementImages = {
   hackathonWinner: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=200&fit=crop',
   googleAward: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=200&fit=crop',

@@ -1,8 +1,123 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCertificate, FaFilter, FaCalendarAlt, FaExternalLinkAlt, FaAward, FaMicrosoft, FaTimes } from 'react-icons/fa';
-import { SiCoursera, SiUdemy, SiGoogle, SiAmazon, SiOracle, SiNvidia, SiLinkedin, SiInfosys } from 'react-icons/si';
-import './styles/Timeline.css';
+import { SiCoursera, SiOracle, SiNvidia, SiLinkedin, SiInfosys } from 'react-icons/si';
+import { certificationImages } from '../../utils/imageUtils';
+import OptimizedImage from '../shared/OptimizedImage';
+import Section from '../shared/Section';
+import Button from '../shared/Button';
+import '../styles/Timeline.css';
+
+const certificationsData = [
+  {
+    id: 1,
+    title: 'DevOps foundations: The core principles and practices',
+    issuer: 'Microsoft',
+    platform: 'microsoft',
+    date: 'June 21, 2025',
+    validUntil: 'Lifetime',
+    description: 'Learning path completion in DevOps foundations covering core principles and practices with all module assessments passed.',
+    skills: ['DevOps', 'CI/CD', 'Infrastructure', 'Automation', 'Monitoring'],
+    icon: <FaMicrosoft />,
+    color: '#00BCF2',
+    verifyUrl: 'https://learn.microsoft.com/api/achievements/share/en-us/SubikshaPR-6432/PLNDWKM4?sharingId=69F5C02F89BBF7F3',
+    imageFile: 'DEVOPS.png'
+  },
+  {
+    id: 2,
+    title: 'Oracle APEX Cloud Developer Certified Professional',
+    issuer: 'Oracle University',
+    platform: 'oracle',
+    date: 'May 15, 2025',
+    validUntil: 'Lifetime',
+    description: 'Oracle Certified Professional Certificate of Recognition for Oracle APEX Cloud Developer Certified Professional.',
+    skills: ['Oracle APEX', 'PL/SQL', 'Database Design', 'Cloud Development', 'Low-Code'],
+    icon: <SiOracle />,
+    color: '#F80000',
+    imageFile: 'ORACLE APEX CLOUD.png'
+  },
+  {
+    id: 3,
+    title: 'Deep Learning Specialization',
+    issuer: 'DeepLearning.AI',
+    platform: 'coursera',
+    date: 'April 10, 2025',
+    validUntil: 'Lifetime',
+    description: 'Specialization completion certificate for Deep Learning courses covering neural networks, CNNs, RNNs, and practical applications.',
+    skills: ['Deep Learning', 'Neural Networks', 'CNN', 'RNN', 'TensorFlow', 'Keras'],
+    icon: <SiCoursera />,
+    color: '#0056D2',
+    verifyUrl: 'https://www.coursera.org/account/accomplishments/specialization/certificate',
+    imageFile: 'DEEP LEARNING.png'
+  },
+  {
+    id: 4,
+    title: 'Infosys Certified Bootstrap Developer',
+    issuer: 'Infosys Springboard',
+    platform: 'infosys',
+    date: 'March 25, 2025',
+    validUntil: 'Lifetime',
+    description: 'Certificate of completion for Bootstrap framework training covering responsive design, components, and modern web development practices.',
+    skills: ['Bootstrap', 'Responsive Design', 'CSS Framework', 'Frontend', 'Web Development'],
+    icon: <SiInfosys />,
+    color: '#007ACC',
+    imageFile: 'ISB BOOTSTRAP.png'
+  },
+  {
+    id: 5,
+    title: 'Infosys Certified Business Analyst',
+    issuer: 'Infosys Springboard',
+    platform: 'infosys',
+    date: 'February 18, 2025',
+    validUntil: 'Lifetime',
+    description: 'Certificate of completion for Business Analysis training covering requirements gathering, process modeling, and stakeholder management.',
+    skills: ['Business Analysis', 'Requirements Engineering', 'Process Modeling', 'Agile', 'Stakeholder Management'],
+    icon: <SiInfosys />,
+    color: '#007ACC',
+    imageFile: 'ISB BUSSINESS.png'
+  },
+  {
+    id: 6,
+    title: 'Agile Scrum in Practice',
+    issuer: 'Infosys Springboard',
+    platform: 'infosys',
+    date: 'August 18, 2024',
+    validUntil: 'Lifetime',
+    description: 'Course Completion Certificate for successfully completing Agile Scrum in Practice.',
+    skills: ['Agile', 'Scrum', 'Project Management', 'Sprint Planning', 'Team Collaboration'],
+    icon: <SiInfosys />,
+    color: '#007ACC',
+    imageFile: 'ISB AGILE.png'
+  },
+  {
+    id: 7,
+    title: 'Web Development Fundamentals',
+    issuer: 'IBM SkillsBuild',
+    platform: 'ibm',
+    date: 'June 20, 2025',
+    validUntil: 'Lifetime',
+    description: 'This badge was issued to SUBIKSHA P R for Web Development Fundamentals by IBM SkillsBuild.',
+    skills: ['HTML', 'CSS', 'JavaScript', 'Web Development', 'Frontend'],
+    icon: <FaCertificate />,
+    color: '#1F70C1',
+    verifyUrl: 'https://lnkd.in/dTFHE9ZZ',
+    imageFile: 'WEB DEV IBM.png'
+  },
+  {
+    id: 8,
+    title: 'Introduction to Large Language Models',
+    issuer: 'LinkedIn Learning',
+    platform: 'linkedin',
+    date: 'June 18, 2025',
+    validUntil: 'Lifetime',
+    description: 'Certificate of completion for Introduction to Large Language Models course.',
+    skills: ['LLM', 'NLP', 'AI', 'Machine Learning', 'Language Models'],
+    icon: <SiLinkedin />,
+    color: '#0077B5',
+    verifyUrl: 'https://www.linkedin.com/learning/certificates/b4d2cadb8a4ff4c3c9239dc2b9c6ddb4888eb92aca52353bfe5b224fda1c07cc',
+    imageFile: 'LLM.png'
+  }
+];
 
 const Certifications = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -35,115 +150,6 @@ const Certifications = () => {
     setActiveFilter(filterKey);
   };
 
-  const certifications = [
-    {
-      id: 1,
-      title: 'DevOps foundations: The core principles and practices',
-      issuer: 'Microsoft',
-      platform: 'microsoft',
-      date: 'June 21, 2025',
-      validUntil: 'Lifetime',
-      description: 'Learning path completion in DevOps foundations covering core principles and practices with all module assessments passed.',
-      skills: ['DevOps', 'CI/CD', 'Infrastructure', 'Automation', 'Monitoring'],
-      icon: <FaMicrosoft />,
-      color: '#00BCF2',
-      verifyUrl: 'https://learn.microsoft.com/api/achievements/share/en-us/SubikshaPR-6432/PLNDWKM4?sharingId=69F5C02F89BBF7F3',
-      imageFile: 'DEVOPS.png'
-    },
-    {
-      id: 2,
-      title: 'Oracle APEX Cloud Developer Certified Professional',
-      issuer: 'Oracle University',
-      platform: 'oracle',
-      date: 'May 15, 2025',
-      validUntil: 'Lifetime',
-      description: 'Oracle Certified Professional Certificate of Recognition for Oracle APEX Cloud Developer Certified Professional.',
-      skills: ['Oracle APEX', 'PL/SQL', 'Database Design', 'Cloud Development', 'Low-Code'],
-      icon: <SiOracle />,
-      color: '#F80000',
-      imageFile: 'ORACLE APEX CLOUD.png'
-    },
-    {
-      id: 3,
-      title: 'Fundamentals of Deep Learning',
-      issuer: 'NVIDIA',
-      platform: 'nvidia',
-      date: 'May 29, 2025',
-      validUntil: 'Lifetime',
-      description: 'Certificate of Competency for demonstrating competence in the completion of Fundamentals of Deep Learning with core concepts and practical applications.',
-      skills: ['Deep Learning', 'Neural Networks', 'AI', 'Computer Vision', 'Machine Learning'],
-      icon: <SiNvidia />,
-      color: '#76B900',
-      imageFile: 'DEEP LEARNING.png'
-    },
-    {
-      id: 4,
-      title: 'Introduction to Business Intelligence',
-      issuer: 'Infosys Springboard',
-      platform: 'infosys',
-      date: 'August 3, 2024',
-      validUntil: 'Lifetime',
-      description: 'Course Completion Certificate for successfully completing Introduction to Business Intelligence.',
-      skills: ['Business Intelligence', 'Data Analysis', 'Reporting', 'Analytics', 'SQL'],
-      icon: <SiInfosys />,
-      color: '#007ACC',
-      imageFile: 'ISB BUSSINESS.png'
-    },
-    {
-      id: 5,
-      title: 'Projects on Bootstrap',
-      issuer: 'Infosys Springboard',
-      platform: 'infosys',
-      date: 'July 22, 2024',
-      validUntil: 'Lifetime',
-      description: 'Course Completion Certificate for successfully completing Projects on Bootstrap.',
-      skills: ['Bootstrap', 'Responsive Design', 'CSS Framework', 'Frontend', 'Web Development'],
-      icon: <SiInfosys />,
-      color: '#007ACC',
-      imageFile: 'ISB BOOTSTRAP.png'
-    },
-    {
-      id: 6,
-      title: 'Agile Scrum in Practice',
-      issuer: 'Infosys Springboard',
-      platform: 'infosys',
-      date: 'August 18, 2024',
-      validUntil: 'Lifetime',
-      description: 'Course Completion Certificate for successfully completing Agile Scrum in Practice.',
-      skills: ['Agile', 'Scrum', 'Project Management', 'Sprint Planning', 'Team Collaboration'],
-      icon: <SiInfosys />,
-      color: '#007ACC',
-      imageFile: 'ISB AGILE.png'
-    },
-    {
-      id: 7,
-      title: 'Web Development Fundamentals',
-      issuer: 'IBM SkillsBuild',
-      platform: 'ibm',
-      date: 'June 20, 2025',
-      validUntil: 'Lifetime',
-      description: 'This badge was issued to SUBIKSHA P R for Web Development Fundamentals by IBM SkillsBuild.',
-      skills: ['HTML', 'CSS', 'JavaScript', 'Web Development', 'Frontend'],
-      icon: <FaCertificate />,
-      color: '#1F70C1',
-      verifyUrl: 'https://lnkd.in/dTFHE9ZZ',
-      imageFile: 'WEB DEV IBM.png'
-    },
-    {
-      id: 8,
-      title: 'Introduction to Large Language Models',
-      issuer: 'LinkedIn Learning',
-      platform: 'linkedin',
-      date: 'June 18, 2025',
-      validUntil: 'Lifetime',
-      description: 'Certificate of completion for Introduction to Large Language Models course.',
-      skills: ['LLM', 'NLP', 'AI', 'Machine Learning', 'Language Models'],
-      icon: <SiLinkedin />,
-      color: '#0077B5',
-      verifyUrl: 'https://www.linkedin.com/learning/certificates/b4d2cadb8a4ff4c3c9239dc2b9c6ddb4888eb92aca52353bfe5b224fda1c07cc',
-      imageFile: 'LLM.png'
-    }
-  ];
 
   const filters = [
     { key: 'all', label: 'All Certifications' },
@@ -157,9 +163,9 @@ const Certifications = () => {
 
   const filteredCertifications = React.useMemo(() => {
     if (activeFilter === 'all') {
-      return certifications;
+      return certificationsData;
     }
-    const filtered = certifications.filter(cert => cert.platform === activeFilter);
+    const filtered = certificationsData.filter(cert => cert.platform === activeFilter);
     return filtered;
   }, [activeFilter]);
 
@@ -186,38 +192,30 @@ const Certifications = () => {
   };
 
   return (
-    <section className="certifications-section" id="certifications">
-      <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="section-header"
-        >
-          <h2 className="section-title">Certifications</h2>
-          <p className="section-subtitle">
-            Professional certifications and continuous learning accomplishments
-          </p>
-        </motion.div>
-
-        {/* Filter Buttons */}
-        <motion.div 
-          className="certification-filters"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <FaFilter className="filter-icon" />
-          {filters.map(filter => (
-            <button
-              key={filter.key}
-              className={`filter-btn ${activeFilter === filter.key ? 'active' : ''}`}
-              onClick={() => handleFilterChange(filter.key)}
-            >
-              {filter.label}
-            </button>
-          ))}
-        </motion.div>
+    <Section
+      id="certifications"
+      title="Certifications"
+      subtitle="Professional certifications and continuous learning accomplishments"
+      className="certifications-section"
+    >
+      {/* Filter Buttons */}
+      <motion.div
+        className="certification-filters"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <FaFilter className="filter-icon" />
+        {filters.map(filter => (
+          <Button
+            key={filter.key}
+            className={`filter-btn ${activeFilter === filter.key ? 'active' : ''}`}
+            onClick={() => handleFilterChange(filter.key)}
+          >
+            {filter.label}
+          </Button>
+        ))}
+      </motion.div>
 
         {/* Certifications Grid */}
         <motion.div
@@ -334,13 +332,10 @@ const Certifications = () => {
                 </button>
                 
                 <div className="modal-image">
-                  <img 
-                    src={`/assets/certificates/${selectedCert.imageFile}`}
+                  <OptimizedImage
+                    src={certificationImages[selectedCert.imageFile] || '/assets/Certificates/placeholder.png'}
                     alt={`${selectedCert.title} Certificate`}
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
+                    fallback="/assets/Certificates/placeholder.png"
                   />
                   <div className="image-fallback" style={{ display: 'none' }}>
                     <FaCertificate />
@@ -393,9 +388,8 @@ const Certifications = () => {
             </p>
           </div>
         </motion.div>
-      </div>
-    </section>
+    </Section>
   );
 };
 
-export default Certifications;
+export default memo(Certifications);
