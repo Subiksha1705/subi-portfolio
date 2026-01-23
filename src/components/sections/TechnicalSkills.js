@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  FaReact, FaNodeJs, FaPython, FaJsSquare, FaHtml5, FaCss3Alt, 
-  FaGitAlt, FaDocker, FaAws, FaDatabase, FaJava 
+import {
+  FaReact, FaNodeJs, FaPython, FaJsSquare, FaHtml5, FaCss3Alt,
+  FaGitAlt, FaDocker, FaDatabase, FaJava
 } from 'react-icons/fa';
-import { 
-  SiMongodb, SiPostgresql, SiTensorflow, SiKubernetes, 
-  SiExpress, SiMysql, SiFlask, SiStreamlit, SiBootstrap,
+import {
+  SiMongodb, SiTensorflow, SiKubernetes,
+  SiExpress, SiMysql, SiStreamlit, SiBootstrap,
   SiReact, SiOracle, SiJenkins, SiHuggingface, SiScikitlearn,
-  SiFigma, SiWordpress, SiPostman, SiVscodium, SiJupyter
+  SiFigma, SiWordpress, SiVscodium, SiJupyter
 } from 'react-icons/si';
 
 const TechnicalSkills = () => {

@@ -1,11 +1,10 @@
 import React, { useState, memo } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaFilter } from 'react-icons/fa';
+import { FaGithub, FaFilter } from 'react-icons/fa';
 import { projectImages } from '../../utils/imageUtils';
 import Section from '../shared/Section';
 import Card from '../shared/Card';
 import Button from '../shared/Button';
-import OptimizedImage from '../shared/OptimizedImage';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -70,18 +69,6 @@ const Projects = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
       }
     }
   };
