@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt,
-  FaHeart, FaArrowUp, FaHome, FaUser, FaCode, FaBriefcase,
-  FaCertificate, FaGraduationCap, FaUsers, FaTrophy
+import {
+  FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt,
+  FaArrowUp, FaHome, FaUser, FaCode, FaBriefcase,
+  FaCertificate, FaGraduationCap, FaUsers
 } from 'react-icons/fa';
 
 const Footer = () => {

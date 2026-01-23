@@ -1,7 +1,7 @@
 import React, { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaCertificate, FaFilter, FaCalendarAlt, FaExternalLinkAlt, FaAward, FaMicrosoft, FaTimes } from 'react-icons/fa';
-import { SiCoursera, SiOracle, SiNvidia, SiLinkedin, SiInfosys } from 'react-icons/si';
+import { SiCoursera, SiOracle, SiLinkedin, SiInfosys } from 'react-icons/si';
 import { certificationImages } from '../../utils/imageUtils';
 import OptimizedImage from '../shared/OptimizedImage';
 import Section from '../shared/Section';
