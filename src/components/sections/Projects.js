@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { motion } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaFilter } from 'react-icons/fa';
-import { projectImages } from '../utils/imageUtils';
+import { projectImages } from '../../utils/imageUtils';
+import Section from '../shared/Section';
+import Card from '../shared/Card';
+import Button from '../shared/Button';
+import OptimizedImage from '../shared/OptimizedImage';
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -83,87 +87,73 @@ const Projects = () => {
   };
 
   return (
-    <section className="projects-section" id="projects">
-      <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="section-header"
-        >
-          <h2 className="section-title">Featured Projects</h2>
-          <p className="section-subtitle">
-            A showcase of my technical skills and creative problem-solving abilities
-          </p>
-        </motion.div>
+    <Section
+      id="projects"
+      title="Featured Projects"
+      subtitle="A showcase of my technical skills and creative problem-solving abilities"
+      className="projects-section"
+    >
+      {/* Filter Buttons */}
+      <motion.div
+        className="project-filters"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+      >
+        <FaFilter className="filter-icon" />
+        {filters.map(filter => (
+          <Button
+            key={filter.key}
+            className={`filter-btn ${activeFilter === filter.key ? 'active' : ''}`}
+            onClick={() => setActiveFilter(filter.key)}
+          >
+            {filter.label}
+          </Button>
+        ))}
+      </motion.div>
 
-        {/* Filter Buttons */}
-        <motion.div 
-          className="project-filters"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <FaFilter className="filter-icon" />
-          {filters.map(filter => (
-            <button
-              key={filter.key}
-              className={`filter-btn ${activeFilter === filter.key ? 'active' : ''}`}
-              onClick={() => setActiveFilter(filter.key)}
-            >
-              {filter.label}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Projects Grid */}
-        <motion.div
-          className="projects-grid"
-          key={activeFilter}
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {filteredProjects.map(project => (
-            <motion.div
-              key={project.id}
-              className="project-card"
-              variants={itemVariants}
-              whileHover={{ 
-                y: -10, 
-                transition: { duration: 0.3 } 
-              }}
-            >
-              <div className="project-content">
-                <div className="project-header">
-                  <h3 className="project-title">{project.title}</h3>
-                  <a href={project.github} className="project-github-link" target="_blank" rel="noopener noreferrer">
-                    <FaGithub />
-                  </a>
-                </div>
-                <p className="project-description">{project.description}</p>
-                
-                <div className="project-features">
-                  <h4>Key Features:</h4>
-                  <ul>
-                    {project.features.map((feature, index) => (
-                      <li key={index}>{feature}</li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="project-tags">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="project-tag">{tag}</span>
-                  ))}
-                </div>
+      {/* Projects Grid */}
+      <motion.div
+        className="projects-grid"
+        key={activeFilter}
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        {filteredProjects.map(project => (
+          <Card
+            key={project.id}
+            className="project-card"
+          >
+            <div className="project-content">
+              <div className="project-header">
+                <h3 className="project-title">{project.title}</h3>
+                <a href={project.github} className="project-github-link" target="_blank" rel="noopener noreferrer">
+                  <FaGithub />
+                </a>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
-    </section>
+              <p className="project-description">{project.description}</p>
+
+              <div className="project-features">
+                <h4>Key Features:</h4>
+                <ul>
+                  {project.features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="project-tags">
+                {project.tags.map(tag => (
+                  <span key={tag} className="project-tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </Card>
+        ))}
+      </motion.div>
+    </Section>
   );
 };
 
-export default Projects;
+export default memo(Projects);

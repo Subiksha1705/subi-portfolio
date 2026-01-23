@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaBuilding, FaCalendarAlt, FaMapMarkerAlt, FaCode, FaUsers, FaTrophy } from 'react-icons/fa';
-import { companyLogos } from '../utils/imageUtils';
+import { companyLogos } from '../../utils/imageUtils';
 
 const Internships = () => {
   const internships = [

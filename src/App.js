@@ -1,61 +1,70 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import Hero from './components/Hero';
-import Projects from './components/Projects';
-import TechnicalSkills from './components/TechnicalSkills';
-import Internships from './components/Internships';
-import Certifications from './components/Certifications';
-import Education from './components/Education';
-import Leadership from './components/Leadership';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import React, { Suspense, lazy } from 'react';
 import './App.css';
 
+// Lazy load components
+const Hero = lazy(() => import('./components/sections/Hero'));
+const Projects = lazy(() => import('./components/sections/Projects'));
+const TechnicalSkills = lazy(() => import('./components/sections/TechnicalSkills'));
+const Internships = lazy(() => import('./components/sections/Internships'));
+const Certifications = lazy(() => import('./components/sections/Certifications'));
+const Education = lazy(() => import('./components/sections/Education'));
+const Leadership = lazy(() => import('./components/sections/Leadership'));
+const Contact = lazy(() => import('./components/sections/Contact'));
+const Footer = lazy(() => import('./components/sections/Footer'));
+
 function App() {
+  const LoadingFallback = () => (
+    <div className="loading-fallback">
+      <div className="spinner"></div>
+    </div>
+  );
+
   return (
     <div className="App">
       {/* Hero Section */}
-      <section id="hero">
+      <Suspense fallback={<LoadingFallback />}>
         <Hero />
-      </section>
+      </Suspense>
 
       {/* Projects Section */}
-      <section id="projects">
+      <Suspense fallback={<LoadingFallback />}>
         <Projects />
-      </section>
+      </Suspense>
 
       {/* Technical Skills Section */}
-      <section id="skills">
+      <Suspense fallback={<LoadingFallback />}>
         <TechnicalSkills />
-      </section>
+      </Suspense>
 
       {/* Internships Section */}
-      <section id="internships">
+      <Suspense fallback={<LoadingFallback />}>
         <Internships />
-      </section>
+      </Suspense>
 
       {/* Certifications Section */}
-      <section id="certifications">
+      <Suspense fallback={<LoadingFallback />}>
         <Certifications />
-      </section>
+      </Suspense>
 
       {/* Education Section */}
-      <section id="education">
+      <Suspense fallback={<LoadingFallback />}>
         <Education />
-      </section>
+      </Suspense>
 
       {/* Leadership Section */}
-      <section id="leadership">
+      <Suspense fallback={<LoadingFallback />}>
         <Leadership />
-      </section>
+      </Suspense>
 
       {/* Contact Section */}
-      <section id="contact">
+      <Suspense fallback={<LoadingFallback />}>
         <Contact />
-      </section>
+      </Suspense>
 
       {/* Footer */}
-      <Footer />
+      <Suspense fallback={<LoadingFallback />}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }
