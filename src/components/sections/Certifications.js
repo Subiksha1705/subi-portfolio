@@ -1,393 +1,262 @@
 import React, { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaCertificate, FaFilter, FaCalendarAlt, FaExternalLinkAlt, FaAward, FaMicrosoft, FaTimes } from 'react-icons/fa';
-import { SiCoursera, SiOracle, SiLinkedin, SiInfosys } from 'react-icons/si';
+import { FaFilter, FaCalendarAlt, FaExternalLinkAlt, FaAward, FaTimes } from 'react-icons/fa';
 import { certificationImages } from '../../utils/imageUtils';
 import OptimizedImage from '../shared/OptimizedImage';
 import Section from '../shared/Section';
-import Button from '../shared/Button';
 import '../styles/Timeline.css';
+import { certificationsData } from '../../data/certifications';
 
-const certificationsData = [
-  {
-    id: 1,
-    title: 'DevOps foundations: The core principles and practices',
-    issuer: 'Microsoft',
-    platform: 'microsoft',
-    date: 'June 21, 2025',
-    validUntil: 'Lifetime',
-    description: 'Learning path completion in DevOps foundations covering core principles and practices with all module assessments passed.',
-    skills: ['DevOps', 'CI/CD', 'Infrastructure', 'Automation', 'Monitoring'],
-    icon: <FaMicrosoft />,
-    color: '#00BCF2',
-    verifyUrl: 'https://learn.microsoft.com/api/achievements/share/en-us/SubikshaPR-6432/PLNDWKM4?sharingId=69F5C02F89BBF7F3',
-    imageFile: 'DEVOPS.png'
-  },
-  {
-    id: 2,
-    title: 'Oracle APEX Cloud Developer Certified Professional',
-    issuer: 'Oracle University',
-    platform: 'oracle',
-    date: 'May 15, 2025',
-    validUntil: 'Lifetime',
-    description: 'Oracle Certified Professional Certificate of Recognition for Oracle APEX Cloud Developer Certified Professional.',
-    skills: ['Oracle APEX', 'PL/SQL', 'Database Design', 'Cloud Development', 'Low-Code'],
-    icon: <SiOracle />,
-    color: '#F80000',
-    imageFile: 'ORACLE APEX CLOUD.png'
-  },
-  {
-    id: 3,
-    title: 'Deep Learning Specialization',
-    issuer: 'DeepLearning.AI',
-    platform: 'coursera',
-    date: 'April 10, 2025',
-    validUntil: 'Lifetime',
-    description: 'Specialization completion certificate for Deep Learning courses covering neural networks, CNNs, RNNs, and practical applications.',
-    skills: ['Deep Learning', 'Neural Networks', 'CNN', 'RNN', 'TensorFlow', 'Keras'],
-    icon: <SiCoursera />,
-    color: '#0056D2',
-    verifyUrl: 'https://www.coursera.org/account/accomplishments/specialization/certificate',
-    imageFile: 'DEEP LEARNING.png'
-  },
-  {
-    id: 4,
-    title: 'Infosys Certified Bootstrap Developer',
-    issuer: 'Infosys Springboard',
-    platform: 'infosys',
-    date: 'March 25, 2025',
-    validUntil: 'Lifetime',
-    description: 'Certificate of completion for Bootstrap framework training covering responsive design, components, and modern web development practices.',
-    skills: ['Bootstrap', 'Responsive Design', 'CSS Framework', 'Frontend', 'Web Development'],
-    icon: <SiInfosys />,
-    color: '#007ACC',
-    imageFile: 'ISB BOOTSTRAP.png'
-  },
-  {
-    id: 5,
-    title: 'Infosys Certified Business Analyst',
-    issuer: 'Infosys Springboard',
-    platform: 'infosys',
-    date: 'February 18, 2025',
-    validUntil: 'Lifetime',
-    description: 'Certificate of completion for Business Analysis training covering requirements gathering, process modeling, and stakeholder management.',
-    skills: ['Business Analysis', 'Requirements Engineering', 'Process Modeling', 'Agile', 'Stakeholder Management'],
-    icon: <SiInfosys />,
-    color: '#007ACC',
-    imageFile: 'ISB BUSSINESS.png'
-  },
-  {
-    id: 6,
-    title: 'Agile Scrum in Practice',
-    issuer: 'Infosys Springboard',
-    platform: 'infosys',
-    date: 'August 18, 2024',
-    validUntil: 'Lifetime',
-    description: 'Course Completion Certificate for successfully completing Agile Scrum in Practice.',
-    skills: ['Agile', 'Scrum', 'Project Management', 'Sprint Planning', 'Team Collaboration'],
-    icon: <SiInfosys />,
-    color: '#007ACC',
-    imageFile: 'ISB AGILE.png'
-  },
-  {
-    id: 7,
-    title: 'Web Development Fundamentals',
-    issuer: 'IBM SkillsBuild',
-    platform: 'ibm',
-    date: 'June 20, 2025',
-    validUntil: 'Lifetime',
-    description: 'This badge was issued to SUBIKSHA P R for Web Development Fundamentals by IBM SkillsBuild.',
-    skills: ['HTML', 'CSS', 'JavaScript', 'Web Development', 'Frontend'],
-    icon: <FaCertificate />,
-    color: '#1F70C1',
-    verifyUrl: 'https://lnkd.in/dTFHE9ZZ',
-    imageFile: 'WEB DEV IBM.png'
-  },
-  {
-    id: 8,
-    title: 'Introduction to Large Language Models',
-    issuer: 'LinkedIn Learning',
-    platform: 'linkedin',
-    date: 'June 18, 2025',
-    validUntil: 'Lifetime',
-    description: 'Certificate of completion for Introduction to Large Language Models course.',
-    skills: ['LLM', 'NLP', 'AI', 'Machine Learning', 'Language Models'],
-    icon: <SiLinkedin />,
-    color: '#0077B5',
-    verifyUrl: 'https://www.linkedin.com/learning/certificates/b4d2cadb8a4ff4c3c9239dc2b9c6ddb4888eb92aca52353bfe5b224fda1c07cc',
-    imageFile: 'LLM.png'
-  }
-];
+// Dynamic count functions
+const getTotalCerts = () => certificationsData.length;
+const getUniquePlatforms = () => new Set(certificationsData.map(cert => cert.issuer)).size;
 
 const Certifications = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedCert, setSelectedCert] = useState(null);
 
-  // Reset modal state when component unmounts or when navigating away
+  // Handle ESC key to close modal
   useEffect(() => {
-    return () => {
-      setSelectedCert(null);
-    };
-  }, []);
-
-  // Also reset modal state when the component is hidden/shown
-  useEffect(() => {
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
+    const handleEscKey = (e) => {
+      if (e.key === 'Escape') {
         setSelectedCert(null);
       }
     };
 
-    document.addEventListener('visibilitychange', handleVisibilityChange);
-    
+    window.addEventListener('keydown', handleEscKey);
+    return () => window.removeEventListener('keydown', handleEscKey);
+  }, []);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (selectedCert) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
     return () => {
-      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedCert]);
+
+  // Reset modal state when component unmounts
+  useEffect(() => {
+    return () => {
+      setSelectedCert(null);
+      document.body.style.overflow = 'unset';
     };
   }, []);
 
-  // Handle filter change with proper state management
-  const handleFilterChange = (filterKey) => {
-    setActiveFilter(filterKey);
-  };
-
-
-  const filters = [
-    { key: 'all', label: 'All Certifications' },
-    { key: 'infosys', label: 'Infosys' },
-    { key: 'microsoft', label: 'Microsoft' },
-    { key: 'ibm', label: 'IBM' },
-    { key: 'linkedin', label: 'LinkedIn Learning' },
-    { key: 'oracle', label: 'Oracle' },
-    { key: 'nvidia', label: 'NVIDIA' }
-  ];
-
-  const filteredCertifications = React.useMemo(() => {
-    if (activeFilter === 'all') {
-      return certificationsData;
-    }
-    const filtered = certificationsData.filter(cert => cert.platform === activeFilter);
-    return filtered;
-  }, [activeFilter]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
+  // Reset modal on page visibility change
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        // Optionally refresh verification URL here
       }
-    }
-  };
+    };
+    
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
 
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
+  // Get unique issuers for filter buttons
+  const uniqueIssuers = ['all', ...new Set(certificationsData.map(cert => cert.issuer))];
+
+  // Filter certifications based on selected issuer
+  const filteredCertifications = activeFilter === 'all' 
+    ? certificationsData 
+    : certificationsData.filter(cert => cert.issuer === activeFilter);
+
+  // Use dynamic count functions
+  const totalCerts = getTotalCerts();
+  const uniquePlatforms = getUniquePlatforms();
 
   return (
-    <Section
-      id="certifications"
-      title="Certifications"
-      subtitle="Professional certifications and continuous learning accomplishments"
-      className="certifications-section"
-    >
+    <Section id="certifications" title="Certifications" subtitle={`${totalCerts} Certificates • ${uniquePlatforms} Platforms`}>
       {/* Filter Buttons */}
-      <motion.div
-        className="certification-filters"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        <FaFilter className="filter-icon" />
-        {filters.map(filter => (
-          <Button
-            key={filter.key}
-            className={`filter-btn ${activeFilter === filter.key ? 'active' : ''}`}
-            onClick={() => handleFilterChange(filter.key)}
-          >
-            {filter.label}
-          </Button>
-        ))}
-      </motion.div>
+      <div className="cert-filter-container">
+        <div className="cert-filter-buttons">
+          {uniqueIssuers.map((issuer) => (
+            <button
+              key={issuer}
+              className={`cert-filter-btn ${activeFilter === issuer ? 'active' : ''}`}
+              onClick={() => setActiveFilter(issuer)}
+            >
+              {issuer === 'all' ? (
+                <>
+                  <FaFilter style={{ marginRight: '6px' }} />
+                  All
+                </>
+              ) : (
+                issuer
+              )}
+            </button>
+          ))}
+        </div>
+      </div>
 
-        {/* Certifications Grid */}
-        <motion.div
-          className="certifications-grid"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          key={activeFilter} // Force re-render when filter changes
-        >
-          <AnimatePresence mode="wait">
-            {filteredCertifications.map(cert => (
-              <motion.div
-                key={`${activeFilter}-${cert.id}`} // Unique key for each filter state
-                className="certification-card"
-                variants={itemVariants}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-                whileHover={{ 
-                  y: -10,
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
-                  transition: { duration: 0.3 } 
-                }}
-                onClick={() => setSelectedCert(cert)}
-                style={{ cursor: 'pointer' }}
-              >
-              <div className="cert-header">
+      {/* Certifications Grid */}
+      <div className="certifications-grid">
+        <AnimatePresence mode="popLayout">
+          {filteredCertifications.map((cert) => (
+            <motion.div
+              key={cert.id}
+              layout
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.2 }}
+              className="certification-card-compact"
+              onClick={() => setSelectedCert(cert)}
+              style={{ cursor: 'pointer' }}
+            >
+              <div className="cert-header-compact">
                 <div 
-                  className="cert-icon"
-                  style={{ color: cert.color }}
+                  className="cert-icon-compact" 
+                  style={{ backgroundColor: `${cert.color}20`, color: cert.color }}
                 >
                   {cert.icon}
                 </div>
+                <div className="cert-title-compact">
+                  <h6>{cert.title}</h6>
+                  <span className="cert-issuer">{cert.issuer}</span>
+                </div>
               </div>
-
-              <div className="cert-content">
-                <h3 className="cert-title">{cert.title}</h3>
-                <p className="cert-issuer">{cert.issuer}</p>
-                <p className="cert-description">{cert.description}</p>
-
-                <div className="cert-meta">
-                  <div className="meta-item">
-                    <FaCalendarAlt className="meta-icon" />
-                    <span>Issued: {cert.date}</span>
-                  </div>
-                  <div className="meta-item">
-                    <FaAward className="meta-icon" />
-                    <span>Valid: {cert.validUntil}</span>
-                  </div>
-                </div>
-
-                <div className="cert-skills">
-                  <h4>Skills Gained:</h4>
-                  <div className="skills-tags">
-                    {cert.skills.map(skill => (
-                      <span key={skill} className="skill-tag">{skill}</span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="cert-actions">
-                  <button 
-                    className="verify-btn"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      setSelectedCert(cert);
-                    }}
-                  >
-                    <FaCertificate />
-                    View Certificate
-                  </button>
-                  {cert.verifyUrl && (
-                    <a 
-                      href={cert.verifyUrl}
-                      className="link-btn"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <FaExternalLinkAlt />
-                      Link
-                    </a>
-                  )}
-                </div>
+              
+              <div className="cert-meta-compact">
+                <span className="cert-date">
+                  <FaCalendarAlt style={{ marginRight: '4px' }} />
+                  {cert.date}
+                </span>
+                <span className="cert-valid">{cert.validUntil}</span>
+              </div>
+              
+              <div className="cert-skills-compact">
+                {cert.skills.slice(0, 3).map((skill, idx) => (
+                  <span key={idx} className="skill-tag">{skill}</span>
+                ))}
+              </div>
+              
+              <div className="cert-action">
+                <button 
+                  className="view-cert-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSelectedCert(cert);
+                  }}
+                >
+                  View Certificate
+                </button>
               </div>
             </motion.div>
           ))}
-          </AnimatePresence>
-        </motion.div>
+        </AnimatePresence>
+      </div>
 
-        {/* Certificate Image Modal */}
-        <AnimatePresence>
-          {selectedCert && (
+      {/* Certificate Modal */}
+      <AnimatePresence>
+        {selectedCert && (
+          <motion.div
+            className="cert-modal-overlay"
+            onClick={() => setSelectedCert(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
             <motion.div
-              className="modal-overlay"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedCert(null)}
+              className="cert-modal-content"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0.95, y: 10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
             >
-              <motion.div
-                className="modal-content certificate-modal"
-                initial={{ scale: 0.5, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.5, opacity: 0 }}
-                onClick={(e) => e.stopPropagation()}
+              {/* Close Button - subtle top right */}
+              <button 
+                className="cert-modal-close"
+                onClick={() => setSelectedCert(null)}
+                aria-label="Close modal"
               >
-                <button 
-                  className="modal-close"
-                  onClick={() => setSelectedCert(null)}
-                  aria-label="Close certificate view"
-                >
-                  <FaTimes />
-                </button>
-                
-                <div className="modal-image">
-                  <OptimizedImage
-                    src={certificationImages[selectedCert.imageFile] || '/assets/Certificates/placeholder.png'}
-                    alt={`${selectedCert.title} Certificate`}
-                    fallback="/assets/Certificates/placeholder.png"
-                  />
-                  <div className="image-fallback" style={{ display: 'none' }}>
-                    <FaCertificate />
-                    <p>Certificate image not available</p>
+                <FaTimes />
+              </button>
+              
+              {/* Two-column layout for desktop */}
+              <div className="cert-modal-grid">
+                {/* Left: Content */}
+                <div className="cert-modal-info">
+                  {/* Header with icon */}
+                  <div className="cert-modal-header">
+                    <div 
+                      className="cert-modal-icon"
+                      style={{ backgroundColor: `${selectedCert.color}15`, color: selectedCert.color }}
+                    >
+                      {selectedCert.icon}
+                    </div>
+                    <div className="cert-header-text">
+                      <h2 className="cert-modal-title">{selectedCert.title}</h2>
+                      <p className="cert-modal-issuer">
+                        <FaAward style={{ marginRight: '6px' }} />
+                        {selectedCert.issuer}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Metadata */}
+                  <div className="cert-modal-meta">
+                    <span className="cert-meta-item">
+                      <FaCalendarAlt style={{ marginRight: '6px' }} />
+                      {selectedCert.date}
+                    </span>
+                    <span className="cert-meta-badge">
+                      {selectedCert.validUntil}
+                    </span>
+                  </div>
+                  
+                  {/* Description */}
+                  <div className="cert-modal-description">
+                    <p>{selectedCert.description}</p>
+                  </div>
+                  
+                  {/* Skills - clean chips */}
+                  <div className="cert-modal-skills">
+                    <h4>Skills</h4>
+                    <div className="skills-chips">
+                      {selectedCert.skills.slice(0, 5).map((skill, idx) => (
+                        <span key={idx} className="skill-chip">{skill}</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </motion.div>
+                
+                {/* Right: Certificate Image - 40% */}
+                {selectedCert.imageFile && (
+                  <div className="cert-modal-image-section">
+                    <div className="cert-image-container">
+                      <OptimizedImage
+                        src={certificationImages[selectedCert.imageFile] || selectedCert.imageFile}
+                        alt={selectedCert.title}
+                        className="cert-full-image"
+                      />
+                    </div>
+                  </div>
+                )}
+                
+                {/* Verify Certificate Button - shown when verifyUrl exists */}
+                {selectedCert.verifyUrl && (
+                  <button 
+                    className="cert-modal-verify-btn"
+                    onClick={() => window.open(selectedCert.verifyUrl, '_blank')}
+                  >
+                    <FaExternalLinkAlt style={{ marginRight: '8px' }} />
+                    Verify Certificate
+                  </button>
+                )}
+              </div>
             </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Certification Summary */}
-        <motion.div 
-          className="certification-summary"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          <div className="summary-stats">
-            <div className="stat-item">
-              <FaCertificate className="stat-icon" />
-              <div className="stat-content">
-                <span className="stat-number">8</span>
-                <span className="stat-label">Certifications</span>
-              </div>
-            </div>
-            <div className="stat-item">
-              <SiCoursera className="stat-icon" />
-              <div className="stat-content">
-                <span className="stat-number">6</span>
-                <span className="stat-label">Platforms</span>
-              </div>
-            </div>
-            <div className="stat-item">
-              <FaAward className="stat-icon" />
-              <div className="stat-content">
-                <span className="stat-number">150+</span>
-                <span className="stat-label">Learning Hours</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="learning-commitment">
-            <h3>Commitment to Continuous Learning</h3>
-            <p>
-              I believe in staying current with technology trends and continuously 
-              upgrading my skills through professional certifications and courses. 
-              Each certification represents not just knowledge gained, but practical 
-              skills that I apply in real-world projects.
-            </p>
-          </div>
-        </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </Section>
   );
 };
