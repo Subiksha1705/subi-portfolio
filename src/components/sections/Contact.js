@@ -334,30 +334,7 @@ const Contact = () => {
           </motion.div>
         </div>
 
-        {/* Call to Action */}
-        <motion.div
-          className="contact-cta"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <h3>Prefer a Direct Approach?</h3>
-          <p>Feel free to reach out directly through any of these channels:</p>
-          <div className="cta-buttons">
-            <a href="mailto:subiksharameshkanna@gmail.com?subject=Portfolio Contact&body=Hello Subiksha," className="cta-btn primary" target="_blank" rel="noopener noreferrer">
-              <FaEnvelope />
-              Email Me
-            </a>
-            <a href="https://linkedin.com/in/subikshapr" className="cta-btn primary">
-              <FaUser />
-              LinkedIn
-            </a>
-            <a href="https://github.com/Subiksha1705" className="cta-btn primary">
-              <FaComment />
-              GitHub
-            </a>
-          </div>
-        </motion.div>
+
       </div>
     </section>
   );
