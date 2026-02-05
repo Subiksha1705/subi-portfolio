@@ -1,4 +1,5 @@
 import React, { useState, useEffect, memo } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaFilter, FaCalendarAlt, FaExternalLinkAlt, FaAward, FaTimes } from 'react-icons/fa';
 import { certificationImages } from '../../utils/imageUtils';
@@ -27,15 +28,18 @@ const Certifications = () => {
     return () => window.removeEventListener('keydown', handleEscKey);
   }, []);
 
-  // Lock body scroll when modal is open
+  // Lock body scroll and mark modal state when modal is open
   useEffect(() => {
     if (selectedCert) {
+      document.body.classList.add('cert-modal-open');
       document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('cert-modal-open');
+      document.body.style.overflow = '';
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('cert-modal-open');
+      document.body.style.overflow = '';
     };
   }, [selectedCert]);
 
@@ -43,7 +47,8 @@ const Certifications = () => {
   useEffect(() => {
     return () => {
       setSelectedCert(null);
-      document.body.style.overflow = 'unset';
+      document.body.classList.remove('cert-modal-open');
+      document.body.style.overflow = '';
     };
   }, []);
 
@@ -153,110 +158,113 @@ const Certifications = () => {
         </AnimatePresence>
       </div>
 
-      {/* Certificate Modal */}
-      <AnimatePresence>
-        {selectedCert && (
-          <motion.div
-            className="cert-modal-overlay"
-            onClick={() => setSelectedCert(null)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
+      {/* Certificate Modal (Portal to <body> so it isn't constrained by section stacking contexts) */}
+      {typeof document !== 'undefined' && createPortal(
+        <AnimatePresence>
+          {selectedCert && (
             <motion.div
-              className="cert-modal-content"
-              onClick={(e) => e.stopPropagation()}
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="cert-modal-overlay"
+              onClick={() => setSelectedCert(null)}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
             >
-              {/* Close Button - subtle top right */}
-              <button 
-                className="cert-modal-close"
-                onClick={() => setSelectedCert(null)}
-                aria-label="Close modal"
+              <motion.div
+                className="cert-modal-content"
+                onClick={(e) => e.stopPropagation()}
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25 }}
               >
-                <FaTimes />
-              </button>
-              
-              {/* Two-column layout for desktop */}
-              <div className="cert-modal-grid">
-                {/* Left: Content */}
-                <div className="cert-modal-info">
-                  {/* Header with icon */}
-                  <div className="cert-modal-header">
-                    <div 
-                      className="cert-modal-icon"
-                      style={{ backgroundColor: `${selectedCert.color}15`, color: selectedCert.color }}
+                {/* Close Button - subtle top right */}
+                <button
+                  className="cert-modal-close"
+                  onClick={() => setSelectedCert(null)}
+                  aria-label="Close modal"
+                >
+                  <FaTimes />
+                </button>
+
+                {/* Two-column layout for desktop */}
+                <div className="cert-modal-grid">
+                  {/* Left: Content */}
+                  <div className="cert-modal-info">
+                    {/* Header with icon */}
+                    <div className="cert-modal-header">
+                      <div
+                        className="cert-modal-icon"
+                        style={{ backgroundColor: `${selectedCert.color}15`, color: selectedCert.color }}
+                      >
+                        {selectedCert.icon}
+                      </div>
+                      <div className="cert-header-text">
+                        <h2 className="cert-modal-title">{selectedCert.title}</h2>
+                        <p className="cert-modal-issuer">
+                          <FaAward style={{ marginRight: '6px' }} />
+                          {selectedCert.issuer}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Metadata */}
+                    <div className="cert-modal-meta">
+                      <span className="cert-meta-item">
+                        <FaCalendarAlt style={{ marginRight: '6px' }} />
+                        {selectedCert.date}
+                      </span>
+                      <span className="cert-meta-badge">
+                        {selectedCert.validUntil}
+                      </span>
+                    </div>
+
+                    {/* Description */}
+                    <div className="cert-modal-description">
+                      <p>{selectedCert.description}</p>
+                    </div>
+
+                    {/* Skills - clean chips */}
+                    <div className="cert-modal-skills">
+                      <h4>Skills</h4>
+                      <div className="skills-chips">
+                        {selectedCert.skills.slice(0, 5).map((skill, idx) => (
+                          <span key={idx} className="skill-chip">{skill}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right: Certificate Image - 40% */}
+                  {selectedCert.imageFile && (
+                    <div className="cert-modal-image-section">
+                      <div className="cert-image-container">
+                        <OptimizedImage
+                          src={certificationImages[selectedCert.imageFile] || selectedCert.imageFile}
+                          alt={selectedCert.title}
+                          className="cert-full-image"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Verify Certificate Button - shown when verifyUrl exists */}
+                  {selectedCert.verifyUrl && (
+                    <button
+                      className="cert-modal-verify-btn"
+                      onClick={() => window.open(selectedCert.verifyUrl, '_blank')}
                     >
-                      {selectedCert.icon}
-                    </div>
-                    <div className="cert-header-text">
-                      <h2 className="cert-modal-title">{selectedCert.title}</h2>
-                      <p className="cert-modal-issuer">
-                        <FaAward style={{ marginRight: '6px' }} />
-                        {selectedCert.issuer}
-                      </p>
-                    </div>
-                  </div>
-                  
-                  {/* Metadata */}
-                  <div className="cert-modal-meta">
-                    <span className="cert-meta-item">
-                      <FaCalendarAlt style={{ marginRight: '6px' }} />
-                      {selectedCert.date}
-                    </span>
-                    <span className="cert-meta-badge">
-                      {selectedCert.validUntil}
-                    </span>
-                  </div>
-                  
-                  {/* Description */}
-                  <div className="cert-modal-description">
-                    <p>{selectedCert.description}</p>
-                  </div>
-                  
-                  {/* Skills - clean chips */}
-                  <div className="cert-modal-skills">
-                    <h4>Skills</h4>
-                    <div className="skills-chips">
-                      {selectedCert.skills.slice(0, 5).map((skill, idx) => (
-                        <span key={idx} className="skill-chip">{skill}</span>
-                      ))}
-                    </div>
-                  </div>
+                      <FaExternalLinkAlt style={{ marginRight: '8px' }} />
+                      Verify Certificate
+                    </button>
+                  )}
                 </div>
-                
-                {/* Right: Certificate Image - 40% */}
-                {selectedCert.imageFile && (
-                  <div className="cert-modal-image-section">
-                    <div className="cert-image-container">
-                      <OptimizedImage
-                        src={certificationImages[selectedCert.imageFile] || selectedCert.imageFile}
-                        alt={selectedCert.title}
-                        className="cert-full-image"
-                      />
-                    </div>
-                  </div>
-                )}
-                
-                {/* Verify Certificate Button - shown when verifyUrl exists */}
-                {selectedCert.verifyUrl && (
-                  <button 
-                    className="cert-modal-verify-btn"
-                    onClick={() => window.open(selectedCert.verifyUrl, '_blank')}
-                  >
-                    <FaExternalLinkAlt style={{ marginRight: '8px' }} />
-                    Verify Certificate
-                  </button>
-                )}
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </Section>
   );
 };

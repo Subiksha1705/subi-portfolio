@@ -2,18 +2,11 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt,
-  FaArrowUp, FaHome, FaUser, FaCode, FaBriefcase,
+  FaHome, FaUser, FaCode, FaBriefcase,
   FaCertificate, FaGraduationCap, FaUsers
 } from 'react-icons/fa';
 
 const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -176,19 +169,6 @@ const Footer = () => {
               </div>
             </motion.div>
           </div>
-
-          {/* Scroll to Top Button */}
-          <motion.button
-            className="scroll-to-top"
-            onClick={scrollToTop}
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.3, delay: 0.6 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <FaArrowUp />
-          </motion.button>
 
           {/* Footer Bottom */}
           <motion.div 

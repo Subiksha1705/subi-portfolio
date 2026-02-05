@@ -1,187 +1,144 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaCalendarAlt, FaMapMarkerAlt, FaTrophy, FaBook } from 'react-icons/fa';
+import React, { memo } from 'react';
+import Section from '../shared/Section';
+import '../styles/Experience.css';
 
 const Education = () => {
-  const education = [
+  // Education data sorted in descending chronological order (most recent first)
+  const educationData = [
     {
       id: 1,
-      degree: 'M.Sc. in Software Systems',
-      institution: 'Kongu Engineering College',
-      period: '2022 - 2027',
-      location: 'Erode, Tamil Nadu',
-      gpa: '8.02/10.0',
-      status: 'Current',
-      description: 'Comprehensive 5-year integrated master\'s program specializing in software systems with hands-on experience in full-stack development, AI/ML, and modern DevOps practices.',
-      relevantCourses: [
-        'Data Structures and Algorithms',
-        'Software Engineering',
-        'Database Management Systems',
-        'Web Technologies',
-        'Machine Learning',
-        'DevOps',
-        'Object-Oriented Programming',
-        'Computer Networks'
-      ]
+      company: "Kongu Engineering College",
+      role: "M.Sc. in Software Systems",
+      duration: "2022 - 2027",
+      location: "Erode, Tamil Nadu",
+      summary: "Comprehensive 5-year integrated master's program specializing in software systems with hands-on experience in full-stack development, AI/ML, and modern DevOps practices.",
+      highlights: [
+        "Specializing in software systems with focus on AI/ML and DevOps",
+        "Hands-on experience in full-stack development",
+        "Strong foundation in Data Structures, Algorithms, and Software Engineering",
+        "Current CGPA: 8.02/10.0"
+      ],
+      techStack: ["Data Structures", "Algorithms", "Machine Learning", "DevOps", "Web Technologies", "DBMS"],
+      metrics: [{ value: "8.02/10.0", label: "CGPA" }],
+      status: "Current"
     },
     {
       id: 2,
-      degree: 'Class XII (Higher Secondary)',
-      institution: 'Bharathiyar CBSE School',
-      period: '2020 - 2022',
-      location: 'Attur, Tamil Nadu',
-      gpa: '76% (380/500)',
-      status: 'Completed',
-      description: 'Science stream education with Mathematics, Physics, Chemistry, and Computer Science, building strong analytical and technical foundation.',
-      relevantCourses: [
-        'Biology',
-        'Physics',
-        'Chemistry',
-        'Computer Science',
-        'English'
-      ]
+      company: "Bharathiyar CBSE School",
+      role: "Class XII (Higher Secondary)",
+      duration: "2020 - 2022",
+      location: "Attur, Tamil Nadu",
+      summary: "Science stream education with Mathematics, Physics, Chemistry, and Computer Science, building strong analytical and technical foundation.",
+      highlights: [
+        "Science stream with Mathematics, Physics, Chemistry, and Computer Science",
+        "Built strong analytical and technical foundation",
+        "Scored 76% (380/500)"
+      ],
+      techStack: ["Mathematics", "Physics", "Chemistry", "Computer Science"],
+      metrics: [{ value: "76%", label: "Percentage" }],
+      status: "Completed"
     },
     {
       id: 3,
-      degree: 'Class X (Secondary School)',
-      institution: 'Jaivins Academy CBSE School',
-      period: '2019 - 2020',
-      location: 'Attur, Tamil Nadu',
-      gpa: '73% (365/500)',
-      status: 'Completed',
-      description: 'Foundational secondary education with balanced curriculum covering core subjects and early exposure to computer applications.',
-      relevantCourses: [
-        'Mathematics',
-        'Science',
-        'Tamil',
-        'English',
-        'Social Studies'
-      ]
+      company: "Jaivins Academy CBSE School",
+      role: "Class X (Secondary School)",
+      duration: "2019 - 2020",
+      location: "Attur, Tamil Nadu",
+      summary: "Foundational secondary education with balanced curriculum covering core subjects and early exposure to computer applications.",
+      highlights: [
+        "Balanced curriculum covering core academic subjects",
+        "Early exposure to computer applications",
+        "Scored 73% (365/500)"
+      ],
+      techStack: ["Mathematics", "Science", "English", "Tamil", "Social Studies"],
+      metrics: [{ value: "73%", label: "Percentage" }],
+      status: "Completed"
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <section className="education-section" id="education">
-      <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="section-header"
-        >
-          <h2 className="section-title">Education</h2>
-          <p className="section-subtitle">
-            Academic background and educational achievements
-          </p>
-        </motion.div>
-
-        <motion.div
-          className="education-timeline"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {education.map((edu, index) => (
-            <motion.div
-              key={edu.id}
-              className={`education-item ${index % 2 === 0 ? 'left' : 'right'}`}
-              variants={itemVariants}
-            >
-              <motion.div 
-                className="education-card"
-                whileHover={{ 
-                  scale: 1.02,
-                  boxShadow: "0 20px 40px rgba(139, 92, 246, 0.1)"
-                }}
-                transition={{ type: "spring", stiffness: 300 }}
+    <Section
+      id="education"
+      title="Education"
+      subtitle="Academic background and qualifications"
+      className="education-section"
+    >
+      <div className="experience-container">
+        {/* Center Timeline Line */}
+        <div className="experience-center-line" />
+        
+        {/* Education Cards with Mirror Layout */}
+        <div className="experience-mirror-layout">
+          {educationData.map((edu, index) => {
+            const isOdd = index % 2 === 0; // Odd position (0, 2, 4...) goes left
+            return (
+              <div 
+                key={edu.id} 
+                className={`experience-row ${isOdd ? 'row-left' : 'row-right'}`}
               >
-                <div className="education-header">
-                  <div className="institution-info">
-                    <div className="institution-details">
-                      <h3 className="degree-title">{edu.degree}</h3>
-                      <h4 className="institution-name">{edu.institution}</h4>
+                {/* Timeline Dot */}
+                <div className={`experience-timeline-dot ${isOdd ? 'dot-left' : 'dot-right'}`} />
+                
+                {/* Education Card */}
+                <div className={`experience-card-compact ${isOdd ? 'card-left' : 'card-right'}`}>
+                  <div className="experience-card-inner">
+                    {/* Header */}
+                    <div className="experience-header-compact">
+                      <div className="experience-role-section">
+                        <span className="experience-role">{edu.role}</span>
+                        <span className="experience-company">{edu.company}</span>
+                      </div>
+                      <div className="experience-meta-compact">
+                        <span className="experience-duration">{edu.duration}</span>
+                        <span className="experience-location">{edu.location}</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className={`status-badge ${edu.status.toLowerCase()}`}>
-                    {edu.status}
+                    
+                    {/* Summary */}
+                    <p className="experience-summary-compact">{edu.summary}</p>
+                    
+                    {/* Metrics */}
+                    {edu.metrics && edu.metrics.length > 0 && (
+                      <div className="experience-metrics-compact">
+                        {edu.metrics.map((item, idx) => (
+                          <span key={idx} className="experience-metric-tag">
+                            {item.value} {item.label}
+                          </span>
+                        ))}
+                        <span className={`status-badge ${edu.status.toLowerCase()}`}>
+                          {edu.status}
+                        </span>
+                      </div>
+                    )}
+                    
+                    {/* Highlights */}
+                    {edu.highlights && edu.highlights.length > 0 && (
+                      <ul className="experience-highlights-compact">
+                        {edu.highlights.map((point, idx) => (
+                          <li key={idx} className="experience-highlight-item">
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    
+                    {/* Tech Stack */}
+                    {edu.techStack && edu.techStack.length > 0 && (
+                      <div className="experience-tech-compact">
+                        {edu.techStack.map((tech, idx) => (
+                          <span key={idx} className="experience-tech-tag">{tech}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
-
-                <div className="education-meta">
-                  <div className="meta-item">
-                    <FaCalendarAlt className="meta-icon" />
-                    <span>{edu.period}</span>
-                  </div>
-                  <div className="meta-item">
-                    <FaMapMarkerAlt className="meta-icon" />
-                    <span>{edu.location}</span>
-                  </div>
-                  <div className="meta-item">
-                    <FaTrophy className="meta-icon" />
-                    <span>GPA: {edu.gpa}</span>
-                  </div>
-                </div>
-
-                <p className="education-description">{edu.description}</p>
-
-                <div className="education-details">
-                  <div className="detail-section">
-                    <h5><FaBook className="section-icon" /> Relevant Coursework:</h5>
-                    <div className="courses-grid">
-                      {edu.relevantCourses.map(course => (
-                        <span key={course} className="course-tag">{course}</span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Educational Journey Summary */}
-        <motion.div 
-          className="study-philosophy"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-        >
-          <div className="philosophy-content">
-            <h3>My Educational Journey</h3>
-            <p>
-              From building foundational knowledge in secondary school to pursuing advanced software systems, 
-              my educational timeline reflects a consistent commitment to growth and learning. Each phase has 
-              contributed to developing both technical expertise and leadership skills, with hands-on projects, 
-              internships, and active community involvement complementing formal education.
-            </p>
-          </div>
-        </motion.div>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </section>
+    </Section>
   );
 };
 
-export default Education;
+export default memo(Education);

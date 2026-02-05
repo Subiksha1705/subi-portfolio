@@ -1,8 +1,8 @@
 /* Internships Section */
 .internships-section {
   background: rgba(15, 15, 15, 0.8);
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  width: 100%;
+  margin-left: 0;
   padding: 0;
   overflow-x: hidden;
 }
@@ -979,32 +979,35 @@
 
 /* Modal Overlay */
 .cert-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.85);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 1rem;
-  backdrop-filter: blur(4px);
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100vw !important;
+  min-height: 100vh !important;
+  background: #000000 !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 2147483647 !important;
+  padding: 1rem !important;
+  pointer-events: all !important;
+  overflow: hidden !important;
 }
 
 /* Modal Content - Clean card */
 .cert-modal-content {
-  background: linear-gradient(145deg, #1a1a1a 0%, #141414 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  max-width: 1800px;
-  width: 100%;
-  position: relative;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(139, 92, 246, 0.1);
-  overflow: hidden;
+  background: linear-gradient(145deg, #1a1a1a 0%, #141414 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  max-width: 900px !important;
+  width: 100% !important;
+  position: relative !important;
+  z-index: 100000 !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.15) !important;
+  overflow: hidden !important;
 }
 
 /* Close Button - Subtle top right */
@@ -1033,34 +1036,21 @@
   border-color: rgba(139, 92, 246, 0.3);
 }
 
-/* Modal Overlay - Solid black with blur for focused viewing */
-.cert-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: #000000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: 1.5rem;
-  backdrop-filter: blur(8px) brightness(0.7);
-}
+/* ==============================
+   CERTIFICATE MODAL CONTENT
+   ============================== */
 
 /* Modal Content - Clean card */
 .cert-modal-content {
-  background: linear-gradient(145deg, #1a1a1a 0%, #141414 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  max-width: 900px;
-  width: 100%;
-  position: relative;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(139, 92, 246, 0.1);
-  overflow: hidden;
+  background: linear-gradient(145deg, #1a1a1a 0%, #141414 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  max-width: 900px !important;
+  width: 100% !important;
+  position: relative !important;
+  z-index: 100000 !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.15) !important;
+  overflow: hidden !important;
 }
 
 /* Close Button - Subtle top right */
@@ -1230,7 +1220,7 @@
 
 /* Right Column - Image (40%) */
 .cert-modal-image-section {
-  background: rgba(0, 0, 0, 0.3);
+  background: #000000;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -1243,7 +1233,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.2);
+  background: #000000;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(139, 92, 246, 0.15);
@@ -1467,49 +1457,9 @@
   }
 }
 
-@media (max-width: 480px) {
-  .cert-modal-overlay {
-    padding: 0.5rem;
-  }
-
-  .cert-modal-container {
-    max-width: 98vw;
-    max-height: 95vh;
-    border-radius: 12px;
-  }
-
-  .cert-modal-close {
-    width: 32px;
-    height: 32px;
-    font-size: 1rem;
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-
-  .cert-modal-title {
-    font-size: 0.9rem;
-    padding-right: 2rem;
-  }
-
-  .cert-modal-issuer {
-    font-size: 0.8rem;
-  }
-
-  .cert-modal-meta {
-    flex-direction: column;
-    gap: 0.35rem;
-  }
-
-  .cert-modal-verify {
-    width: 100%;
-    justify-content: center;
-    font-size: 0.75rem;
-  }
-}
-
 /* Smooth scrolling for the entire document */
 html {
-  scroll-behavior: smooth;
+  /* smooth scrolling disabled */
 }
 
 /* Improved education card hover effects */
@@ -1616,8 +1566,8 @@ html {
 /* Education Section */
 .education-section {
   background: rgba(15, 15, 15, 0.8);
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  width: 100%;
+  margin-left: 0;
   padding: 0;
   overflow-x: hidden;
   scroll-behavior: smooth;

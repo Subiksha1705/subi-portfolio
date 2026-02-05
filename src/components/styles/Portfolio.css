@@ -10,6 +10,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
@@ -20,6 +22,7 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
   min-height: 100vh;
+  width: 100%;
 }
 
 .App {
@@ -132,7 +135,6 @@ body {
 section {
   padding: 3rem 0;
   position: relative;
-  z-index: 1;
 }
 
 /* Reduce spacing for first section after hero */
@@ -148,7 +150,6 @@ section + section {
 section:nth-child(even) {
   background: rgba(20, 20, 20, 0.3);
   position: relative;
-  z-index: 1;
 }
 
 /* Section Headers */
@@ -974,41 +975,6 @@ input, textarea {
 
 .social-link:hover .social-tooltip {
   opacity: 1;
-}
-
-.scroll-to-top {
-  position: fixed;
-  bottom: 2rem;
-  left: 2rem;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #8B5CF6, #A855F7);
-  border: none;
-  color: white;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
-  transition: all 0.3s ease;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.scroll-to-top:hover {
-  box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5);
-  transform: translateY(-2px);
-}
-
-@media (max-width: 768px) {
-  .scroll-to-top {
-    bottom: 1rem;
-    left: 1rem;
-    width: 45px;
-    height: 45px;
-    font-size: 1rem;
-  }
 }
 
 /* Leadership Section Styles */
