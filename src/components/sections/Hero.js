@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa';
 import '../../Hero.css';
 
 const Hero = () => {
   const [typingText, setTypingText] = useState('');
   const [isLoading, setIsLoading] = useState(true);
-  const fullText = 'Full Stack Developer & M.Sc. Software Systems Student';
+  const [socialFaded, setSocialFaded] = useState(false);
+  const fullText = 'Associate Software Engineer';
 
   useEffect(() => {
     // Loading screen
@@ -25,9 +26,38 @@ const Hero = () => {
       }
     }, 100);
 
+    // Scroll detection for social icons fade
+    let fadeTimer;
+    
+    const handleScroll = () => {
+      // User is scrolling - show icons at full opacity
+      setSocialFaded(false);
+      
+      // Clear any existing fade timer
+      clearTimeout(fadeTimer);
+      
+      // Set timer to fade icons after 5 seconds of no scrolling
+      fadeTimer = setTimeout(() => {
+        setSocialFaded(true);
+      }, 5000);
+    };
+
+    // Add scroll listener
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    // Initialize with full visibility
+    setSocialFaded(false);
+    
+    // Start fade timer - fade after 5 seconds of no activity
+    fadeTimer = setTimeout(() => {
+      setSocialFaded(true);
+    }, 5000);
+
     return () => {
       clearTimeout(loadingTimer);
       clearInterval(typingTimer);
+      clearTimeout(fadeTimer);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -75,86 +105,110 @@ const Hero = () => {
           </div>
         </div>
 
-        
-          <div className="hero-content">
-            <motion.div 
-              className="hero-text"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-            >
-              <h1 className="hero-name">
-                <span className="name-highlight">Subiksha P R</span>
-              </h1>
-              <h2 className="hero-title">
-                {typingText}
-                <span className="typing-cursor">|</span>
-              </h2>
-              <div className="hero-description">
-                <p>
-            Welcome to my portfolio! I am a dedicated Full Stack Developer with hands-on experience in designing, developing, and deploying robust web applications. My expertise spans React, Node.js, Express, and MongoDB, complemented by a strong academic background as an M.Sc. Software Systems student. I am passionate about leveraging technology to deliver innovative, scalable solutions and am eager to collaborate on impactful projects.
-                </p>
-                
-                {/* Download Resume Button */}
-              <motion.a
-                href="/assets/Subiksha-Resume.pdf"
-                download="Subiksha-Resume.pdf"
-                className="download-resume-btn"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2, duration: 0.6 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                📄 Download Resume
-              </motion.a>
-            </div>
-          </motion.div>
-
-          {/* Professional Summary Card */}
+        {/* Hero Content - Two Column Layout */}
+        <div className="hero-content">
+          {/* Left Column: Text Content */}
           <motion.div 
-            className="professional-summary"
+            className="hero-text-section"
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 1, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <h3>Professional Summary</h3>
-            <div className="summary-content">
+            <motion.h1 
+              className="hero-name"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
+              Subiksha <span className="name-highlight">P R</span>
+            </motion.h1>
+            
+            <motion.h2 
+              className="hero-title"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+            >
+              {typingText}
+              <span className="typing-cursor">|</span>
+            </motion.h2>
+            
+            <motion.div 
+              className="hero-description"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.9, duration: 0.6 }}
+            >
               <p>
-                Full Stack Developer with 7 months of industry-level internship experience in designing, 
-                developing, and deploying end-to-end web applications. Proficient in building scalable APIs, 
-                optimizing frontend performance, and automating deployments with Docker, Kubernetes, and Helm.
+                Associate Software Engineer with 13 months of internship experience 
+                working on live, production-grade full-stack systems. Skilled in React, 
+                Next.js, Node.js, REST APIs, and cloud infrastructure.
               </p>
-              
-              {/* Contact Information */}
-              <div className="contact-info">
-                <div className="contact-item">
-                  <FaEnvelope className="contact-icon" />
-                  <span>subiksharameshkanna@gmail.com</span>
-                </div>
-                <div className="contact-item">
-                  <FaMapMarkerAlt className="contact-icon" />
-                  <span>Bengaluru, Karnataka</span>
-                </div>
+            </motion.div>
+            
+            {/* Resume Button */}
+            <motion.a
+              href="/assets/subi_tech_resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hero-resume-btn"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 1.1, duration: 0.6 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              📄 View Resume
+            </motion.a>
+          </motion.div>
+
+          {/* Right Column: Profile Image */}
+          <motion.div 
+            className="hero-image-section"
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            <div className="profile-image-wrapper">
+              {/* Purple circular ring */}
+              <div className="profile-image-ring"></div>
+              {/* Inner container with overflow hidden */}
+              <div className="profile-image-container">
+                <img 
+                  src="/assets/profile.png" 
+                  alt="Subiksha P R"
+                  className="profile-image"
+                />
               </div>
             </div>
           </motion.div>
         </div>
 
+        {/* Scroll Indicator - Absolute at bottom of hero */}
+        <motion.div 
+          className="hero-scroll-indicator"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.7 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+        >
+          <div className="hero-scroll-mouse"></div>
+          <span>Scroll</span>
+        </motion.div>
+
         {/* Floating Social Icons */}
         <motion.div 
-          className="floating-social"
+          className={`floating-social ${socialFaded ? 'faded' : ''}`}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 0.8 }}
         >
-          <a href="https://linkedin.com/in/subikshapr" className="social-icon linkedin">
+          <a href="https://linkedin.com/in/subikshapr" className="social-icon linkedin" target="_blank" rel="noopener noreferrer">
             <FaLinkedin />
           </a>
-          <a href="https://github.com/Subiksha1705" className="social-icon github">
+          <a href="https://github.com/Subiksha1705" className="social-icon github" target="_blank" rel="noopener noreferrer">
             <FaGithub />
           </a>
-          <a href="mailto:subiksharameshkanna@gmail.com?subject=Portfolio Contact&body=Hello Subiksha," className="social-icon email" target="_blank" rel="noopener noreferrer">
+          <a href="mailto:subiksharameshkanna@gmail.com" className="social-icon email" target="_blank" rel="noopener noreferrer">
             <FaEnvelope />
           </a>
         </motion.div>
