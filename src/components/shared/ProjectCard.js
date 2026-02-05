@@ -10,18 +10,20 @@ export default function ProjectCard({
 }) {
   return (
     <div className="project-card">
-      {/* GitHub Icon */}
-      <a
-        href={github}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="project-github-icon"
-      >
-        <FaGithub size={22} />
-      </a>
+      {/* GitHub Icon - only show if github is provided */}
+      {github && (
+        <a
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="project-github-icon"
+        >
+          <FaGithub size={22} />
+        </a>
+      )}
 
       {/* Title */}
-      <h3 className="project-card-title">
+      <h3 className="project-card-title" style={!github ? { paddingRight: 0 } : {}}>
         {title}
       </h3>
 
@@ -30,17 +32,16 @@ export default function ProjectCard({
         {description}
       </p>
 
-      {/* Features */}
+      {/* Features Section - only for projects */}
       {features.length > 0 && (
         <>
           <h4 className="project-features-title">
             Key Features
           </h4>
-
           <ul className="project-features-list">
             {features.map((feature, index) => (
               <li
-                key={index}
+                key={`feature-${index}`}
                 className="project-feature-item"
               >
                 <span className="project-feature-bullet">▸</span>
@@ -51,12 +52,12 @@ export default function ProjectCard({
         </>
       )}
 
-      {/* Tech Stack */}
+      {/* Tech Stack / Skills Section */}
       {tech.length > 0 && (
         <div className="project-tech-stack">
           {tech.map((item, index) => (
             <span
-              key={index}
+              key={`tech-${index}`}
               className="project-tech-tag"
             >
               {item}

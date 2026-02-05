@@ -669,17 +669,26 @@ input, textarea {
   background: rgba(168, 85, 247, 0.1);
   color: #C084FC;
   border: 1px solid rgba(168, 85, 247, 0.3);
+  transition: all 0.3s ease;
+}
+
+.project-tech-tag:hover {
+  background: rgba(168, 85, 247, 0.3);
+  color: #ffffff;
+  border-color: rgba(168, 85, 247, 0.6);
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
-  .projects-grid {
+  .projects-grid,
+  .skills-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 640px) {
-  .projects-grid {
+  .projects-grid,
+  .skills-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -693,9 +702,8 @@ input, textarea {
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-bottom: 2.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
 .skill-category {
