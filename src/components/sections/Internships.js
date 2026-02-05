@@ -1,129 +1,125 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaBuilding, FaCalendarAlt, FaMapMarkerAlt, FaCode } from 'react-icons/fa';
-import { companyLogos } from '../../utils/imageUtils';
+import React, { memo } from 'react';
+import Section from '../shared/Section';
+import '../styles/Experience.css';
 
 const Internships = () => {
-  const internships = [
+  // Experience data sorted in descending chronological order (most recent first)
+  const experienceData = [
     {
       id: 1,
-      company: 'Lights Inc',
-      role: 'App Developer Intern',
-      period: 'September 2024 - March 2025',
-      location: 'Erode, Tamil Nadu',
-      logo: companyLogos.techcorp,
-      description: 'Developed React-based financial analytics platform serving 40+ users with UI components and backend services for FIRE number computation.',
+      company: "Incresco",
+      role: "Software Engineering Intern",
+      duration: "Jul 2025 – Dec 2025",
+      location: "Bengaluru (On-site)",
+      summary:
+        "Worked on multiple live, production-grade platforms spanning global education systems, AI-driven applications, and enterprise CRM products.",
       highlights: [
-        'Built React frontend and Node.js backend for financial analytics platform',
-        'Implemented RESTful APIs for data retrieval and processing',
-        'Collaborated with cross-functional teams to enhance user experience',
-        'Used MongoDB for data storage and retrieval',
-        'Used to calculate FIRE numbers',
-        'Improved application performance by 30% through optimization',
-        'Delivered 5+ features serving 40+ active users',
-        'Worked with React, Node.js, Express, MongoDB, and RESTful APIs'
-
-      ]
+        "Contributed to global student application platform using Next.js and AWS cloud services with OCR-based document processing",
+        "Built AI-powered chatbot platform capable of image analysis, document-based responses, and WhatsApp webhook integrations",
+        "Executed large-scale data migration from Vtiger involving 50,000+ records across 20,000+ users using structured ETL pipelines",
+        "Optimized API workflows and database queries improving system performance and reliability"
+      ],
+      techStack: ["AWS", "Node.js", "PostgreSQL", "MongoDB", "Git", "Docker", "Next.js", "Agile"],
+    },
+    {
+      id: 2,
+      company: "Lights Inc",
+      role: "Full Stack Developer Intern",
+      duration: "Sept 2024 – Mar 2025",
+      location: "Erode (Hybrid)",
+      summary:
+        "Designed and developed LightsOn, a full-stack personal finance web application focused on FIRE (Financial Independence, Retire Early) planning.",
+      highlights: [
+        "Built and maintained RESTful APIs with proper request validation and authentication logic",
+        "Tested and validated APIs using Postman reducing runtime errors",
+        "Implemented database-driven features and optimized queries for performance and scalability",
+        "Supported users through feature enhancements, bug fixes, and performance improvements"
+      ],
+      metrics: [{ value: "40+", label: "Active Users" }],
+      techStack: ["React", "Node.js", "MongoDB", "REST APIs", "Postman", "Git", "GitHub"],
     }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <section className="internships-section" id="internships">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="section-header"
-        style={{ textAlign: 'center', padding: '4rem 2rem 2rem' }}
-      >
-        <h2 className="section-title">Professional Experience</h2>
-        <p className="section-subtitle">
-          Hands-on experience gained through internships and collaborative projects
-        </p>
-      </motion.div>
-
-      <div className="timeline-container">
-        <motion.div
-          className="timeline"
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-            {internships.map((internship, index) => (
-              <motion.div
-                key={internship.id}
-                className="timeline-item"
-                variants={itemVariants}
+    <Section
+      id="internships"
+      title="Professional Experience"
+      subtitle="My journey through internships and work experiences"
+      className="internships-section"
+    >
+      <div className="experience-container">
+        {/* Center Timeline Line */}
+        <div className="experience-center-line" />
+        
+        {/* Experience Cards with Mirror Layout */}
+        <div className="experience-mirror-layout">
+          {experienceData.map((exp, index) => {
+            const isOdd = index % 2 === 0; // Odd position (0, 2, 4...) goes left
+            return (
+              <div 
+                key={exp.id} 
+                className={`experience-row ${isOdd ? 'row-left' : 'row-right'}`}
               >
-                <div className="timeline-marker">
-                  <FaBuilding />
-                </div>
+                {/* Timeline Dot */}
+                <div className={`experience-timeline-dot ${isOdd ? 'dot-left' : 'dot-right'}`} />
                 
-                <motion.div 
-                  className="timeline-content"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="internship-header">
-                    <div className="company-info">
-                      <div>
-                        <h3 className="company-name">{internship.company}</h3>
-                        <h4 className="role-title">{internship.role}</h4>
+                {/* Experience Card */}
+                <div className={`experience-card-compact ${isOdd ? 'card-left' : 'card-right'}`}>
+                  <div className="experience-card-inner">
+                    {/* Header */}
+                    <div className="experience-header-compact">
+                      <div className="experience-role-section">
+                        <span className="experience-role">{exp.role}</span>
+                        <span className="experience-company">{exp.company}</span>
+                      </div>
+                      <div className="experience-meta-compact">
+                        <span className="experience-duration">{exp.duration}</span>
+                        <span className="experience-location">{exp.location}</span>
                       </div>
                     </div>
+                    
+                    {/* Summary */}
+                    <p className="experience-summary-compact">{exp.summary}</p>
+                    
+                    {/* Metrics */}
+                    {exp.metrics && exp.metrics.length > 0 && (
+                      <div className="experience-metrics-compact">
+                        {exp.metrics.map((item, idx) => (
+                          <span key={idx} className="experience-metric-tag">
+                            {item.value} {item.label}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                    
+                    {/* Highlights */}
+                    {exp.highlights && exp.highlights.length > 0 && (
+                      <ul className="experience-highlights-compact">
+                        {exp.highlights.map((point, idx) => (
+                          <li key={idx} className="experience-highlight-item">
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    
+                    {/* Tech Stack */}
+                    {exp.techStack && exp.techStack.length > 0 && (
+                      <div className="experience-tech-compact">
+                        {exp.techStack.map((tech, idx) => (
+                          <span key={idx} className="experience-tech-tag">{tech}</span>
+                        ))}
+                      </div>
+                    )}
                   </div>
-
-                  <div className="internship-meta">
-                    <div className="meta-item">
-                      <FaCalendarAlt className="meta-icon" />
-                      <span>{internship.period}</span>
-                    </div>
-                    <div className="meta-item">
-                      <FaMapMarkerAlt className="meta-icon" />
-                      <span>{internship.location}</span>
-                    </div>
-                  </div>
-
-                  <p className="internship-description">{internship.description}</p>
-
-                  <div className="highlights">
-                    <h5><FaCode className="section-icon" /> Key Highlights:</h5>
-                    <ul>
-                      {internship.highlights.map((highlight, idx) => (
-                        <li key={idx}>{highlight}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
+                </div>
+              </div>
+            );
+          })}
         </div>
-    </section>
+      </div>
+    </Section>
   );
 };
 
-export default Internships;
+export default memo(Internships);
