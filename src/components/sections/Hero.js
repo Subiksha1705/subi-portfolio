@@ -7,6 +7,7 @@ const Hero = () => {
   const [typingText, setTypingText] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [socialFaded, setSocialFaded] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const fullText = 'Associate Software Engineer';
 
   useEffect(() => {
@@ -30,6 +31,9 @@ const Hero = () => {
     let fadeTimer;
     
     const handleScroll = () => {
+      // Hide scroll indicator after first scroll
+      setHasScrolled(true);
+      
       // User is scrolling - show icons at full opacity
       setSocialFaded(false);
       
@@ -158,7 +162,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              📄 View Resume
+              View Resume
             </motion.a>
           </motion.div>
 
@@ -186,9 +190,9 @@ const Hero = () => {
 
         {/* Scroll Indicator - Absolute at bottom of hero */}
         <motion.div 
-          className="hero-scroll-indicator"
+          className={`hero-scroll-indicator ${hasScrolled ? 'hidden' : ''}`}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.7 }}
+          animate={{ opacity: hasScrolled ? 0 : 0.7 }}
           transition={{ delay: 1.5, duration: 0.8 }}
         >
           <div className="hero-scroll-mouse"></div>
