@@ -1,0 +1,322 @@
+/* Mobile-only enhancements are scoped under .mobile-app to avoid impacting desktop/tablet UI. */
+.mobile-app {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.mobile-app .container {
+  padding: 0 1.25rem;
+}
+
+/* Carousel */
+.mobile-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.mobile-carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0.25rem 0 0.85rem;
+}
+
+.mobile-carousel-nav-btn {
+  position: static;
+}
+
+.mobile-carousel-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mobile-carousel .slick-list {
+  overflow: hidden;
+}
+
+.mobile-carousel .slick-slide > div {
+  padding: 0 0.5rem;
+}
+
+.mobile-carousel .slick-track {
+  display: flex !important;
+}
+
+.mobile-carousel .slick-slide {
+  height: inherit !important;
+  display: flex !important;
+}
+
+.mobile-carousel .slick-slide > div {
+  width: 100%;
+  display: flex;
+}
+
+.mobile-carousel .mobile-carousel-slide {
+  width: 100%;
+}
+
+.mobile-carousel-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  border: 1px solid rgba(139, 92, 246, 0.45);
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+}
+
+.mobile-carousel-arrow:hover {
+  border-color: rgba(168, 85, 247, 0.8);
+  background: rgba(139, 92, 246, 0.25);
+}
+
+.mobile-carousel .slick-prev,
+.mobile-carousel .slick-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mobile-carousel .slick-prev {
+  left: 0.25rem;
+}
+
+.mobile-carousel .slick-next {
+  right: 0.25rem;
+}
+
+.mobile-carousel .slick-prev:before,
+.mobile-carousel .slick-next:before {
+  content: '';
+}
+
+/* Fix hero text overflow when flex aligns center */
+.mobile-app .hero-text-section {
+  width: 100%;
+}
+
+.mobile-app .hero-container {
+  min-height: auto !important;
+  padding: 6rem 1.25rem 4rem !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+.mobile-app .mobile-hero-content {
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.25rem;
+  text-align: center;
+}
+
+.mobile-app .mobile-hero-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.mobile-app .mobile-hero-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-app .hero-name {
+  font-size: clamp(2.2rem, 9vw, 2.8rem) !important;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.mobile-app .hero-title {
+  font-size: clamp(1.25rem, 5.2vw, 1.6rem) !important;
+}
+
+.mobile-app .hero-description {
+  font-size: 1rem !important;
+}
+
+.mobile-app .hero-description {
+  width: 100%;
+  max-width: 100%;
+}
+
+.mobile-app .hero-description p {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Certifications: allow card to grow so View button always shows */
+.mobile-app .certification-card-compact {
+  height: auto !important;
+  max-height: none !important;
+}
+
+.mobile-app .cert-title-compact h6 {
+  margin: 0 0 0.25rem 0;
+}
+
+/* Make cards fit viewport */
+.mobile-app .project-card,
+.mobile-app .certification-card-compact,
+.mobile-app .experience-card-compact,
+.mobile-app .achievement-card,
+.mobile-app .leadership-card,
+.mobile-app .portfolio-footer {
+  max-width: 100%;
+}
+
+/* Modal */
+.mobile-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 9999;
+}
+
+.mobile-modal {
+  width: min(96vw, 560px);
+  max-height: 92vh;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: linear-gradient(135deg, rgba(18, 18, 18, 0.98), rgba(10, 10, 10, 0.98));
+  overflow: hidden;
+}
+
+.mobile-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mobile-modal-title {
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.mobile-modal-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 9999px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  background: rgba(0, 0, 0, 0.25);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-modal-body {
+  padding: 0.75rem 1rem 1rem;
+  max-height: calc(92vh - 58px);
+  overflow: auto;
+}
+
+.mobile-modal-body img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* Footer (mobile-only) */
+.mobile-footer-layout {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.mobile-footer-top {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.mobile-footer-top > .footer-nav,
+.mobile-footer-top > .footer-contact {
+  flex: 1;
+  min-width: 0;
+}
+
+.mobile-footer-layout .footer-nav-list {
+  padding-left: 0;
+  margin: 0;
+}
+
+.mobile-footer-layout .footer-contact-item {
+  padding: 0.85rem 1rem;
+}
+
+.mobile-footer-layout .footer-contact-item span {
+  word-break: break-word;
+}
+
+.mobile-footer-brand {
+  align-items: center;
+  text-align: center;
+}
+
+.mobile-footer-brand .footer-brand-description {
+  max-width: 100%;
+}
+
+/* Certifications modal content */
+.mobile-cert-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mobile-cert-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+.mobile-cert-issuer {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #d4d4d4;
+  font-size: 0.9rem;
+}
+
+.mobile-cert-image {
+  width: 100%;
+  max-height: 65vh;
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 12px;
+}
+
+.mobile-cert-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.mobile-cert-actions .cert-modal-verify-btn {
+  position: static;
+  width: 100%;
+}
