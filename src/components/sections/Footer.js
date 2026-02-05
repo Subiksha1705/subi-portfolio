@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaMapMarkerAlt, FaArrowUp } from 'react-icons/fa';
+import { FaEnvelope, FaMapMarkerAlt, FaArrowUp, FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const PortfolioFooter = () => {
   const scrollToSection = (sectionId) => {
@@ -21,7 +21,7 @@ const PortfolioFooter = () => {
     { id: 'certifications', label: 'Certifications' },
     { id: 'education', label: 'Education' },
     { id: 'leadership', label: 'Leadership' },
-    { id: 'contact', label: 'Contact' }
+
   ];
 
   return (
@@ -77,10 +77,20 @@ const PortfolioFooter = () => {
         >
           <h3 className="footer-contact-title">Get in touch</h3>
 
-          <div className="footer-contact-item">
+          <a href="mailto:subiksharameshkanna@gmail.com" className="footer-contact-item">
             <FaEnvelope className="footer-contact-icon" />
             <span>subiksharameshkanna@gmail.com</span>
-          </div>
+          </a>
+
+          <a href="https://linkedin.com/in/subikshapr" target="_blank" rel="noopener noreferrer" className="footer-contact-item">
+            <FaLinkedin className="footer-contact-icon" />
+            <span>linkedin.com/in/subikshapr</span>
+          </a>
+
+          <a href="https://github.com/Subiksha1705" target="_blank" rel="noopener noreferrer" className="footer-contact-item">
+            <FaGithub className="footer-contact-icon" />
+            <span>github.com/Subiksha1705</span>
+          </a>
 
           <div className="footer-contact-item">
             <FaMapMarkerAlt className="footer-contact-icon" />

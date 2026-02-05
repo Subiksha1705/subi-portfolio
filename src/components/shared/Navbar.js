@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FaHome, FaCode, FaUser, FaBriefcase, FaCertificate, FaGraduationCap, FaUsers, FaTrophy, FaEnvelope } from 'react-icons/fa';
+import { FaHome, FaCode, FaUser, FaBriefcase, FaCertificate, FaGraduationCap, FaUsers, FaTrophy } from 'react-icons/fa';
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('hero');
@@ -13,7 +13,7 @@ const Navbar = () => {
     { id: 'internships', label: 'Experience', icon: <FaBriefcase /> },
     { id: 'education', label: 'Education', icon: <FaGraduationCap /> },
     { id: 'leadership', label: 'Leadership', icon: <FaUsers /> },
-    { id: 'contact', label: 'Contact', icon: <FaEnvelope /> }
+
   ];
 
   useEffect(() => {

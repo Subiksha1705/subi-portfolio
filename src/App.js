@@ -9,7 +9,7 @@ const Internships = lazy(() => import('./components/sections/Internships'));
 const Certifications = lazy(() => import('./components/sections/Certifications'));
 const Education = lazy(() => import('./components/sections/Education'));
 const Leadership = lazy(() => import('./components/sections/Leadership'));
-const Contact = lazy(() => import('./components/sections/Contact'));
+
 const Footer = lazy(() => import('./components/sections/Footer'));
 
 function App() {
@@ -54,11 +54,6 @@ function App() {
       {/* Leadership Section */}
       <Suspense fallback={<LoadingFallback />}>
         <Leadership />
-      </Suspense>
-
-      {/* Contact Section */}
-      <Suspense fallback={<LoadingFallback />}>
-        <Contact />
       </Suspense>
 
       {/* Footer */}

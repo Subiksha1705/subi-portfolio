@@ -1531,6 +1531,15 @@ input, textarea {
   border: 1px solid rgba(168, 85, 247, 0.2);
   border-radius: 0.75rem;
   padding: 1rem 1.25rem;
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.footer-contact-item:hover {
+  background: rgba(168, 85, 247, 0.1);
+  border-color: #a855f7;
+  transform: translateX(5px);
 }
 
 .footer-contact-icon {
