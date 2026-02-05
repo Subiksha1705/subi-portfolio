@@ -608,10 +608,12 @@ input, textarea {
   right: 1rem;
   color: #9CA3AF;
   transition: color 0.3s ease;
+  cursor: pointer;
 }
 
 .project-github-icon:hover {
   color: #A855F7;
+  cursor: pointer;
 }
 
 .project-card-title {
@@ -1453,7 +1455,7 @@ input, textarea {
 
 .footer-brand-tagline {
   font-size: 0.875rem;
-  color: #a855f7;
+  color: #e5e5e5;
 }
 
 .footer-brand-description {
