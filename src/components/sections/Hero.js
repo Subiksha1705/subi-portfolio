@@ -107,6 +107,12 @@ const Hero = () => {
               <div key={i} className={`particle particle-${i}`}></div>
             ))}
           </div>
+          {/* Purple dots animation - same as loading screen */}
+          <div className="hero-particles">
+            {[...Array(25)].map((_, i) => (
+              <div key={i} className={`hero-particle hero-particle-${i}`}></div>
+            ))}
+          </div>
         </div>
 
         {/* Hero Content - Two Column Layout */}
