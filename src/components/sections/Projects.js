@@ -15,10 +15,11 @@ const Projects = () => {
     {
       id: 2,
       title: 'Calm Sphere: Mental Health Chatbot',
-      description: 'AI-powered mental health chatbot with personalized support and mood tracking features',
-      features: ['LLaMA 3 Integration', 'Mood Tracking', '85% User Satisfaction'],
-      tech: ['Streamlit', 'MongoDB', 'Hugging Face', 'LLaMA 3', 'Python'],
-      github: 'https://github.com/Subiksha1705/Calm_Sphere'
+      description: 'Safe-space mental health chatbot with emotional and risk analysis, plus persistent and temporary chat modes.',
+      features: ['Emotional + Risk Analysis', 'Persistent & Temporary Chats', 'Google Sign-In (Firebase)', 'Gemini AI Conversations'],
+      tech: ['Next.js', 'FastAPI', 'Firebase', 'Google Gemini', 'Vercel', 'Render', 'Python', 'React'],
+      github: 'https://github.com/Subiksha1705/Calm_Sphere',
+      live: 'https://calm-mocha.vercel.app/chat'
     },
     {
       id: 3,
@@ -46,6 +47,7 @@ const Projects = () => {
             features={project.features}
             tech={project.tech}
             github={project.github}
+            live={project.live}
           />
         ))}
       </div>

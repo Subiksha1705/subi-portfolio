@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaRocket } from 'react-icons/fa';
 
 export default function ProjectCard({
   title = "Project Title",
@@ -7,23 +7,43 @@ export default function ProjectCard({
   features = [],
   tech = [],
   github = "#",
+  live = "",
 }) {
+  const hasLinks = Boolean(github) || Boolean(live);
   return (
     <div className="project-card">
-      {/* GitHub Icon - only show if github is provided */}
-      {github && (
-        <a
-          href={github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="project-github-icon"
-        >
-          <FaGithub size={22} />
-        </a>
+      {/* Links - only show if provided */}
+      {hasLinks && (
+        <div className="project-card-links">
+          {live && (
+            <a
+              href={live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link-icon project-link-demo"
+              aria-label="Live demo"
+              data-tooltip="View demo"
+            >
+              <FaRocket size={20} />
+            </a>
+          )}
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-link-icon project-link-github"
+              aria-label="GitHub repository"
+              data-tooltip="View GitHub"
+            >
+              <FaGithub size={22} />
+            </a>
+          )}
+        </div>
       )}
 
       {/* Title */}
-      <h3 className="project-card-title" style={!github ? { paddingRight: 0 } : {}}>
+      <h3 className="project-card-title" style={!hasLinks ? { paddingRight: 0 } : {}}>
         {title}
       </h3>
 

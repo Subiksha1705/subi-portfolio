@@ -602,18 +602,80 @@ input, textarea {
   box-shadow: 0 0 30px rgba(168, 85, 247, 0.2);
 }
 
-.project-github-icon {
+.project-card-links {
   position: absolute;
   top: 1rem;
   right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.project-link-icon {
   color: #9CA3AF;
   transition: color 0.3s ease;
   cursor: pointer;
 }
 
-.project-github-icon:hover {
+.project-link-icon:hover {
   color: #A855F7;
   cursor: pointer;
+}
+
+.project-link-demo {
+  position: relative;
+}
+
+.project-link-github {
+  position: relative;
+}
+
+.project-link-demo::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 0;
+  top: 1.75rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #E5E7EB;
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.project-link-github::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  right: 0;
+  top: 1.75rem;
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(10, 10, 10, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #E5E7EB;
+  font-size: 0.72rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.project-link-demo:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-link-github:hover::after {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .project-card-title {
