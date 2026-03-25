@@ -18,7 +18,7 @@ const Projects = () => {
       description: 'Safe-space mental health chatbot with emotional and risk analysis, plus persistent and temporary chat modes.',
       features: ['Emotional + Risk Analysis', 'Persistent & Temporary Chats', 'Google Sign-In (Firebase)', 'Gemini AI Conversations'],
       tech: ['Next.js', 'FastAPI', 'Firebase', 'Google Gemini', 'Vercel', 'Render', 'Python', 'React'],
-      github: 'https://github.com/Subiksha1705/Calm_Sphere',
+      github: 'https://github.com/Subiksha1705/calm.git',
       live: 'https://calm-mocha.vercel.app/chat'
     },
     {
