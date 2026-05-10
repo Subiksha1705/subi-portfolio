@@ -1,6 +1,6 @@
 import React from 'react';
-import { FaCertificate, FaMicrosoft } from 'react-icons/fa';
-import { SiOracle, SiLinkedin, SiInfosys, SiNvidia } from 'react-icons/si';
+import { FaCertificate, FaDatabase, FaLinkedin, FaMicrosoft } from 'react-icons/fa';
+import { SiInfosys, SiNvidia } from 'react-icons/si';
 
 export const certificationsData = [
   {
@@ -24,7 +24,7 @@ export const certificationsData = [
     validUntil: 'Lifetime',
     description: 'Oracle Certified Professional Certificate of Recognition for Oracle APEX Cloud Developer Certified Professional.',
     skills: ['Oracle APEX', 'PL/SQL', 'Database Design', 'Cloud Development', 'Low-Code'],
-    icon: <SiOracle />,
+    icon: <FaDatabase />,
     color: '#F80000',
     imageFile: 'ORACLE APEX CLOUD.png'
   },
@@ -97,7 +97,7 @@ export const certificationsData = [
     validUntil: 'Lifetime',
     description: 'Certificate of completion for Introduction to Large Language Models course.',
     skills: ['LLM', 'NLP', 'AI', 'Machine Learning', 'Language Models'],
-    icon: <SiLinkedin />,
+    icon: <FaLinkedin />,
     color: '#0077B5',
     verifyUrl: 'https://www.linkedin.com/learning/certificates/b4d2cadb8a4ff4c3c9239dc2b9c6ddb4888eb92aca52353bfe5b224fda1c07cc',
     imageFile: 'LLM.png'

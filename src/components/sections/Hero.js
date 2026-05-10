@@ -150,7 +150,7 @@ const Hero = () => {
               transition={{ delay: 0.9, duration: 0.6 }}
             >
               <p>
-                Associate Software Engineer with 13 months of internship experience 
+                Associate Software Engineer with 1 year internship experience 
                 working on live, production-grade full-stack systems. Skilled in React, 
                 Next.js, Node.js, REST APIs, and cloud infrastructure.
               </p>

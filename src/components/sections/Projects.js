@@ -7,16 +7,23 @@ const Projects = () => {
     {
       id: 1,
       title: 'KEC Hostel Management System',
-      description: 'Comprehensive hostel management system serving students, reducing leave application processing time by 80% and complaint resolution time by 50%',
-      features: ['Data Entry Automation', 'Leave Management', 'Admin Dashboard'],
-      tech: ['HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL'],
-      github: 'https://github.com/Subiksha1705/Kec_Hostel'
+      description: 'AI-powered multi-tenant hostel platform for educational institutions with role-based portals, streamlining admissions, room allocation, communication, and operations through secure workflows and automation.',
+      features: [
+        'Role-Based Access Control (RBAC)',
+        'Student admissions and room allocation',
+        'Leave and complaint management workflows',
+        'JWT authentication with access and refresh tokens',
+        'Gemini AI chatbot with institution-specific knowledge base'
+      ],
+      tech: ['Next.js', 'Neon Postgres', 'Prisma ORM', 'Node.js', 'Gemini AI', 'JWT Authentication', 'Vercel Deployment'],
+      github: 'https://github.com/Subiksha1705/kec-hostel.git',
+      live: 'https://nyroverve.vercel.app/'
     },
     {
       id: 2,
       title: 'Calm Sphere: Mental Health Chatbot',
-      description: 'Safe-space mental health chatbot with emotional and risk analysis, plus persistent and temporary chat modes.',
-      features: ['Emotional + Risk Analysis', 'Persistent & Temporary Chats', 'Google Sign-In (Firebase)', 'Gemini AI Conversations'],
+      description: 'AI-powered mental health chatbot featuring ChatGPT-style interface, temporary chat mode, and voice-to-text support, enabling private conversations, emotional analysis, and guided wellbeing interactions.',
+      features: ['Temporary Chat Mode', 'Voice-to-Text Conversations', 'ChatGPT-Style UI', 'Emotional + Risk Analysis', 'Gemini AI Conversations'],
       tech: ['Next.js', 'FastAPI', 'Firebase', 'Google Gemini', 'Vercel', 'Render', 'Python', 'React'],
       github: 'https://github.com/Subiksha1705/calm.git',
       live: 'https://calm-mocha.vercel.app/chat'
@@ -24,8 +31,8 @@ const Projects = () => {
     {
       id: 3,
       title: 'LIGHTSON: Financial Independence Tracker',
-      description: 'Cross-platform mobile app with 40+ beta users, helping track expenses and calculate FIRE numbers with 95% accuracy',
-      features: ['Expense Tracking', 'FIRE Calculator', '4.8/5 Rating'],
+      description: 'Cross-platform financial tracker for income, expense, and investment management, providing visual representations, actionable insights, and planning tools to support long-term financial independence.',
+      features: ['Income Tracking', 'Expense Tracking', 'Investment Tracking', 'Visual Financial Representations', 'FIRE Calculator'],
       tech: ['React Native', 'MongoDB', 'Node.js', 'Express'],
       github: 'https://github.com/Subiksha1705/LIGHTSON'
     },
